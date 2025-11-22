@@ -3,77 +3,107 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DSR OGGY - Hacker Style • User Friendly</title>
+  <title>DSR OGGY • Digital Creator</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="dsr-logo.png" />
 </head>
 <body>
-  <div class="scanlines"></div>
+  <!-- Gradient background blobs -->
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+  <div class="bg-blob blob-3"></div>
 
+  <!-- NAVBAR -->
   <header class="navbar glass">
     <div class="nav-left">
-      <img src="dsr-logo.png" class="nav-logo" alt="DSR OGGY Logo" />
-      <div class="nav-title">
-        <span class="brand-main">DSR OGGY</span>
-        <span class="brand-sub">Hacker UI • User Friendly</span>
+      <img src="dsr-logo.png" alt="DSR Logo" class="nav-logo" />
+      <div class="nav-text">
+        <span class="nav-brand">DSR OGGY</span>
+        <span class="nav-sub">Digital Creator • Developer</span>
       </div>
     </div>
     <nav class="nav-links">
       <a href="#hero">Home</a>
       <a href="#about">About</a>
-      <a href="#skills">Skills</a>
+      <a href="#services">Services</a>
       <a href="#projects">Projects</a>
+      <a href="#downloads">Downloads</a>
       <a href="#contact">Contact</a>
     </nav>
+    <button class="nav-cta" onclick="scrollToSection('contact')">Let’s Talk</button>
+    <button class="nav-toggle" aria-label="Open Menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
+  <div class="mobile-menu glass" id="mobileMenu">
+    <a href="#hero" onclick="toggleMenu()">Home</a>
+    <a href="#about" onclick="toggleMenu()">About</a>
+    <a href="#services" onclick="toggleMenu()">Services</a>
+    <a href="#projects" onclick="toggleMenu()">Projects</a>
+    <a href="#downloads" onclick="toggleMenu()">Downloads</a>
+    <a href="#contact" onclick="toggleMenu()">Contact</a>
+  </div>
+
   <main>
-    <!-- HERO -->
-    <section id="hero" class="hero section animate-on-scroll">
+    <!-- HERO SECTION -->
+    <section id="hero" class="section hero animate-on-scroll">
       <div class="hero-left">
-        <p class="pill">STATUS: ONLINE • ACCESS GRANTED</p>
+        <p class="pill">Available for collabs & projects</p>
         <h1 class="hero-title">
-          Hey, I'm <span class="gradient-text">DSR OGGY</span>
+          I’m <span class="gradient-text">DSR OGGY</span>,<br />
+          I build modern web experiences.
         </h1>
         <p class="hero-sub">
-          Hacker-style look, but easy for normal users. Simple, clean and fast to understand.
+          Clean UI, smooth animations and simple user experience.
+          From landing pages to mini games and creative experiments.
         </p>
-        <div class="hero-buttons">
-          <button class="btn primary" onclick="scrollToSection('projects')">🚀 View Projects</button>
-          <button class="btn ghost" onclick="scrollToSection('contact')">📩 Contact / Collab</button>
+        <div class="hero-actions">
+          <button class="btn primary" onclick="scrollToSection('projects')">
+            🚀 View My Work
+          </button>
+          <button class="btn ghost" onclick="scrollToSection('services')">
+            💼 What I Do
+          </button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-value">10+</span>
+            <span class="stat-label">Project Ideas</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">3+</span>
+            <span class="stat-label">Areas: Web • Games • UI</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">Always</span>
+            <span class="stat-label">Learning & Improving</span>
+          </div>
         </div>
       </div>
       <div class="hero-right glass">
-        <div class="profile-header">
-          <img src="dsr-logo.png" class="profile-avatar" alt="DSR Avatar" />
+        <div class="profile-card">
+          <img src="dsr-logo.png" alt="DSR Avatar" class="profile-avatar" />
           <div>
             <h2 class="profile-name">DSR OGGY</h2>
-            <p class="profile-role">Web • Games • AI • UI</p>
+            <p class="profile-role">Web • Games • Experiments</p>
           </div>
         </div>
         <div class="xp-block">
-          <div class="xp-row">
-            <span>XP Level</span>
-            <span id="xp-value">82%</span>
+          <div class="xp-header">
+            <span>Skill Progress</span>
+            <span id="xpValue">82%</span>
           </div>
           <div class="xp-bar">
             <div class="xp-fill"></div>
           </div>
-          <p class="xp-note">Growing daily: better UI, better ideas, better code.</p>
+          <p class="xp-note">Improving design, code and ideas every day.</p>
         </div>
-        <div class="stats-row">
-          <div class="stat-card">
-            <span class="stat-label">Projects</span>
-            <span class="stat-value">10+ Ideas</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Focus</span>
-            <span class="stat-value">Web & Games</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Style</span>
-            <span class="stat-value">Hacker + Clean</span>
-          </div>
+        <div class="badge-row">
+          <span class="badge">HTML • CSS • JS</span>
+          <span class="badge">Responsive Layouts</span>
+          <span class="badge">Creative UI</span>
+          <span class="badge">Fast Deploys</span>
         </div>
       </div>
     </section>
@@ -82,45 +112,67 @@
     <section id="about" class="section animate-on-scroll">
       <div class="section-header">
         <p class="pill">About</p>
-        <h2>User Friendly Hacker Vibes</h2>
+        <h2>Who I Am</h2>
+        <p class="section-sub">
+          A curious mind exploring web, games and creative coding.
+        </p>
       </div>
       <div class="about-grid">
-        <div class="about-text glass">
+        <div class="glass about-text">
           <p>
-            DSR OGGY ek aisa creator hai jo hacker-style UI pasand karta hai,
-            lekin users ke liye sab cheezein simple aur clean rakhta hai —
-            taki normal log bhi bina confuse hue use kar saken.
+            I like building interfaces that feel smooth, modern and satisfying.
+            I experiment with different layouts, animations and ideas until
+            everything looks and feels right.
           </p>
           <p>
-            Goal: smart, fast, aur thoda hacker flavour ke saath websites & tools banana
-            jo phone + PC dono pe smooth chalein.
+            This site is my base — from here I can launch new projects, games
+            or tools in the future. For now, it’s a clean professional space
+            to show what I can create.
           </p>
         </div>
-        <div class="about-highlights glass">
+        <div class="glass about-list">
           <h3>Highlights</h3>
           <ul>
-            <li>Clean + readable layout</li>
-            <li>Dark mode + neon accents</li>
-            <li>Sections clearly labelled</li>
-            <li>Perfect for first-time visitors</li>
+            <li>Focus on clean, readable UI</li>
+            <li>Dark mode + gradient accents</li>
+            <li>Mobile-first layout</li>
+            <li>Ready for future projects & content</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- SKILLS -->
-    <section id="skills" class="section animate-on-scroll">
+    <!-- SERVICES -->
+    <section id="services" class="section animate-on-scroll">
       <div class="section-header">
-        <p class="pill">Skills</p>
-        <h2>What I Work With</h2>
+        <p class="pill">Services</p>
+        <h2>What I Can Create</h2>
+        <p class="section-sub">
+          This is demo content right now — later we can change it to real services.
+        </p>
       </div>
-      <div class="chips glass">
-        <span class="chip">HTML / CSS / JavaScript</span>
-        <span class="chip">Creative User Interfaces</span>
-        <span class="chip">Mini Games / JS Logic</span>
-        <span class="chip">Netlify + Vercel Deploy</span>
-        <span class="chip">AI Tools & Prompts</span>
-        <span class="chip">Fast Prototyping</span>
+      <div class="cards-grid">
+        <article class="glass service-card">
+          <h3>Landing Pages</h3>
+          <p>
+            Modern & animated single-page websites for personal brands,
+            portfolios or product launches.
+          </p>
+        </article>
+        <article class="glass service-card">
+          <h3>Mini Games / Experiments</h3>
+          <p>
+            Fun JavaScript mini-games or interactive experiments to make your
+            site more engaging.
+          </p>
+        </article>
+        <article class="glass service-card">
+          <h3>Simple Web Tools</h3>
+          <p>
+            Small utilities, UI demos and concept projects that showcase ideas
+            in a clean way.
+          </p>
+        </article>
       </div>
     </section>
 
@@ -128,29 +180,88 @@
     <section id="projects" class="section animate-on-scroll">
       <div class="section-header">
         <p class="pill">Projects</p>
-        <h2>Some Things I’ve Built</h2>
+        <h2>Sample Work & Concepts</h2>
+        <p class="section-sub">
+          These are placeholders for now — later you can replace them with your real projects.
+        </p>
       </div>
-      <div class="projects-grid">
-        <article class="project-card glass">
+      <div class="cards-grid">
+        <article class="glass project-card">
           <h3>DSR Firebase Chat</h3>
-          <p class="project-tagline">
-            Real-time chat UI — simple, clean and powerful. Future target: WhatsApp-level vibe.
+          <p class="project-desc">
+            A chat experiment with clean UI and smooth authentication flow.
+            Built to learn real-time apps.
           </p>
-          <p class="project-meta">Status: In Progress</p>
+          <span class="tag">In Progress</span>
         </article>
-        <article class="project-card glass">
+        <article class="glass project-card">
           <h3>DSR Toe (Tic Tac Toe)</h3>
-          <p class="project-tagline">
-            Colorful mini game with restart/new game features — perfect for quick fun.
+          <p class="project-desc">
+            A colorful mini game with restart & new game options, built for browser play.
           </p>
-          <p class="project-meta">Status: Playable</p>
+          <span class="tag">Playable</span>
         </article>
-        <article class="project-card glass">
+        <article class="glass project-card">
           <h3>DSR Game Store UI</h3>
-          <p class="project-tagline">
-            Concept UI for a small game hub — coins, more games, clean cards and layout.
+          <p class="project-desc">
+            A concept UI for a small game hub, with cards, coins and space for more games.
           </p>
-          <p class="project-meta">Status: Concept</p>
+          <span class="tag">Concept</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- DOWNLOADS -->
+    <section id="downloads" class="section animate-on-scroll">
+      <div class="section-header">
+        <p class="pill">Downloads</p>
+        <h2>Download Center</h2>
+        <p class="section-sub">
+          All demo files in one place — later you can replace them with your own games, apps and content.
+        </p>
+      </div>
+      <div class="cards-grid">
+        <article class="glass project-card">
+          <h3>Game ZIP</h3>
+          <p class="project-desc">
+            Sample game package (ZIP). Replace this later with your real game files.
+          </p>
+          <a href="dsr_game_demo.zip" class="btn primary full" download>🎮 Download Game ZIP</a>
+        </article>
+        <article class="glass project-card">
+          <h3>Android APK</h3>
+          <p class="project-desc">
+            Placeholder APK file. Perfect spot for your future Android builds.
+          </p>
+          <a href="dsr_app_demo.apk" class="btn primary full" download>📱 Download APK</a>
+        </article>
+        <article class="glass project-card">
+          <h3>Music Track</h3>
+          <p class="project-desc">
+            Demo music file. Could be background track, theme music or sound sample.
+          </p>
+          <a href="dsr_music_demo.mp3" class="btn primary full" download>🎵 Download Music</a>
+        </article>
+        <article class="glass project-card">
+          <h3>PDF Document</h3>
+          <p class="project-desc">
+            Demo PDF for guides, docs, resume or project details in future.
+          </p>
+          <a href="dsr_doc_demo.pdf" class="btn primary full" download>📄 Download PDF</a>
+        </article>
+        <article class="glass project-card">
+          <h3>Templates Pack</h3>
+          <p class="project-desc">
+            Sample templates bundle for future UI kits, designs or reusable blocks.
+          </p>
+          <a href="dsr_templates_demo.zip" class="btn primary full" download>🎨 Download Templates</a>
+        </article>
+        <article class="glass project-card">
+          <h3>All-In-One Bundle</h3>
+          <p class="project-desc">
+            One click to grab everything above. Easy for sharing with friends or testing.
+          </p>
+          <a href="dsr_all_downloads_bundle.zip" class="btn primary full" download>⬇️ Download All Files</a>
         </article>
       </div>
     </section>
@@ -159,11 +270,13 @@
     <section id="contact" class="section animate-on-scroll">
       <div class="section-header">
         <p class="pill">Contact</p>
-        <h2>Let’s Talk</h2>
+        <h2>Let’s Build Something</h2>
+        <p class="section-sub">
+          In future, this form can send you real messages. Right now it’s a simple demo.
+        </p>
       </div>
-
-      <div class="contact-layout">
-        <form class="contact-form glass" name="contact" method="POST" data-netlify="true">
+      <div class="contact-grid">
+        <form class="glass contact-form" name="contact" method="POST" data-netlify="true">
           <input type="hidden" name="form-name" value="contact" />
           <label>
             Name
@@ -175,22 +288,23 @@
           </label>
           <label>
             Message
-            <textarea name="message" rows="4" placeholder="Kya banana hai, batao..." required></textarea>
+            <textarea name="message" rows="4" placeholder="Write your message..." required></textarea>
           </label>
-          <button type="submit" class="btn primary full">📤 Send Message</button>
+          <button type="submit" class="btn primary full">📩 Send Message</button>
           <p class="form-note">
-            Netlify par deploy karoge to ye form direct submissions store karega.
+            When you deploy on Netlify, submissions will appear in their Forms dashboard.
           </p>
         </form>
-
-        <div class="contact-info glass">
-          <h3>Social Links</h3>
-          <p>Abhi placeholder links hain, baad mein real profiles se replace kar sakte ho.</p>
+        <div class="glass contact-info">
+          <h3>Social (Placeholders)</h3>
+          <p>
+            For now, these are sample links. Later, you can replace them with your real profiles.
+          </p>
           <div class="social-links">
-            <a href="https://instagram.com" target="_blank">Instagram</a>
-            <a href="https://youtube.com" target="_blank">YouTube</a>
-            <a href="https://github.com" target="_blank">GitHub</a>
-            <a href="https://discord.com" target="_blank">Discord</a>
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">YouTube</a>
+            <a href="#" target="_blank">GitHub</a>
+            <a href="#" target="_blank">Discord</a>
           </div>
         </div>
       </div>
@@ -198,7 +312,9 @@
   </main>
 
   <footer class="footer glass">
-    <p>© <span id="year"></span> DSR OGGY • Hacker vibes, user-friendly UI 😎</p>
+    <p>
+      © <span id="year"></span> DSR OGGY — Built with clean code, gradients and a bit of attitude 😎
+    </p>
   </footer>
 
   <script src="script.js"></script>
