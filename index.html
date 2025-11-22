@@ -3,28 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DSR OGGY // Hacker Console</title>
+  <title>DSR OGGY - Hacker Style • User Friendly</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="dsr-logo.png" />
 </head>
 <body>
   <div class="scanlines"></div>
-  <div class="matrix-layer"></div>
 
   <header class="navbar glass">
     <div class="nav-left">
       <img src="dsr-logo.png" class="nav-logo" alt="DSR OGGY Logo" />
       <div class="nav-title">
         <span class="brand-main">DSR OGGY</span>
-        <span class="brand-sub">root@dsr:~$ hacker_mode --on</span>
+        <span class="brand-sub">Hacker UI • User Friendly</span>
       </div>
     </div>
     <nav class="nav-links">
-      <a href="#hero">/home</a>
-      <a href="#about">/about</a>
-      <a href="#skills">/skills</a>
-      <a href="#projects">/projects</a>
-      <a href="#contact">/contact</a>
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
@@ -32,37 +31,49 @@
     <!-- HERO -->
     <section id="hero" class="hero section animate-on-scroll">
       <div class="hero-left">
-        <p class="pill">[ STATUS ] ONLINE • ACCESS GRANTED</p>
+        <p class="pill">STATUS: ONLINE • ACCESS GRANTED</p>
         <h1 class="hero-title">
-          <span class="prefix">user@dsr:~$</span>
-          <span class="gradient-text"> DSR OGGY</span>
+          Hey, I'm <span class="gradient-text">DSR OGGY</span>
         </h1>
-        <p class="hero-terminal-line" id="hero-typing"></p>
+        <p class="hero-sub">
+          Hacker-style look, but easy for normal users. Simple, clean and fast to understand.
+        </p>
         <div class="hero-buttons">
-          <button class="btn primary" onclick="scrollToSection('projects')">> run projects.sh</button>
-          <button class="btn ghost" onclick="scrollToSection('contact')">> establish_connection</button>
+          <button class="btn primary" onclick="scrollToSection('projects')">🚀 View Projects</button>
+          <button class="btn ghost" onclick="scrollToSection('contact')">📩 Contact / Collab</button>
         </div>
       </div>
-      <div class="hero-right glass terminal-window">
-        <div class="terminal-header">
-          <span class="dot red"></span>
-          <span class="dot yellow"></span>
-          <span class="dot green"></span>
-          <span class="term-title">PROFILE.LOG</span>
+      <div class="hero-right glass">
+        <div class="profile-header">
+          <img src="dsr-logo.png" class="profile-avatar" alt="DSR Avatar" />
+          <div>
+            <h2 class="profile-name">DSR OGGY</h2>
+            <p class="profile-role">Web • Games • AI • UI</p>
+          </div>
         </div>
-        <div class="terminal-body">
-          <pre>
-[PROFILE]
-  name      : DSR OGGY
-  role      : Web // Games // AI
-  location  : IN / IST
-  status    : ACTIVE
-  mode      : CREATOR
-
-[XP]
-  level     : 82%
-  focus     : UI • Games • Experiments
-          </pre>
+        <div class="xp-block">
+          <div class="xp-row">
+            <span>XP Level</span>
+            <span id="xp-value">82%</span>
+          </div>
+          <div class="xp-bar">
+            <div class="xp-fill"></div>
+          </div>
+          <p class="xp-note">Growing daily: better UI, better ideas, better code.</p>
+        </div>
+        <div class="stats-row">
+          <div class="stat-card">
+            <span class="stat-label">Projects</span>
+            <span class="stat-value">10+ Ideas</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Focus</span>
+            <span class="stat-value">Web & Games</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Style</span>
+            <span class="stat-value">Hacker + Clean</span>
+          </div>
         </div>
       </div>
     </section>
@@ -70,36 +81,28 @@
     <!-- ABOUT -->
     <section id="about" class="section animate-on-scroll">
       <div class="section-header">
-        <p class="pill">[ ABOUT ]</p>
-        <h2>whoami</h2>
+        <p class="pill">About</p>
+        <h2>User Friendly Hacker Vibes</h2>
       </div>
       <div class="about-grid">
-        <div class="about-text glass terminal-window">
-          <div class="terminal-header">
-            <span class="dot green"></span>
-            <span class="term-title">about_me.txt</span>
-          </div>
-          <div class="terminal-body small">
-            <pre>
-> DSR OGGY ek aisa creator hai jo
-  web, games aur AI ke saath
-  daily experiment karta hai.
-
-> Mission:
-  - apna DSR ecosystem banana
-  - custom chat apps
-  - hacker style UIs
-  - mini games + tools
-            </pre>
-          </div>
+        <div class="about-text glass">
+          <p>
+            DSR OGGY ek aisa creator hai jo hacker-style UI pasand karta hai,
+            lekin users ke liye sab cheezein simple aur clean rakhta hai —
+            taki normal log bhi bina confuse hue use kar saken.
+          </p>
+          <p>
+            Goal: smart, fast, aur thoda hacker flavour ke saath websites & tools banana
+            jo phone + PC dono pe smooth chalein.
+          </p>
         </div>
         <div class="about-highlights glass">
           <h3>Highlights</h3>
           <ul>
-            <li>> Neon + hacker UI ka heavy fan</li>
-            <li>> Complex cheezein simple dikhana</li>
-            <li>> Fast prototyping, fast iterations</li>
-            <li>> Always in dev / debug mode</li>
+            <li>Clean + readable layout</li>
+            <li>Dark mode + neon accents</li>
+            <li>Sections clearly labelled</li>
+            <li>Perfect for first-time visitors</li>
           </ul>
         </div>
       </div>
@@ -108,40 +111,46 @@
     <!-- SKILLS -->
     <section id="skills" class="section animate-on-scroll">
       <div class="section-header">
-        <p class="pill">[ SKILLS ]</p>
-        <h2>skillset.json</h2>
+        <p class="pill">Skills</p>
+        <h2>What I Work With</h2>
       </div>
       <div class="chips glass">
-        <span class="chip">{ "frontend": "HTML / CSS / JS" }</span>
-        <span class="chip">{ "ui": "neon + hacker vibes" }</span>
-        <span class="chip">{ "games": "mini JS games" }</span>
-        <span class="chip">{ "deploy": "Netlify" }</span>
-        <span class="chip">{ "ai": "prompt + tools" }</span>
-        <span class="chip">{ "mindset": "always learning" }</span>
+        <span class="chip">HTML / CSS / JavaScript</span>
+        <span class="chip">Creative User Interfaces</span>
+        <span class="chip">Mini Games / JS Logic</span>
+        <span class="chip">Netlify + Vercel Deploy</span>
+        <span class="chip">AI Tools & Prompts</span>
+        <span class="chip">Fast Prototyping</span>
       </div>
     </section>
 
     <!-- PROJECTS -->
     <section id="projects" class="section animate-on-scroll">
       <div class="section-header">
-        <p class="pill">[ PROJECTS ]</p>
-        <h2>ls ./projects</h2>
+        <p class="pill">Projects</p>
+        <h2>Some Things I’ve Built</h2>
       </div>
       <div class="projects-grid">
         <article class="project-card glass">
           <h3>DSR Firebase Chat</h3>
-          <p class="project-tagline">> secure_chat --ui neon --auth firebase</p>
-          <p class="project-meta">status: in_progress | stack: web + firebase</p>
+          <p class="project-tagline">
+            Real-time chat UI — simple, clean and powerful. Future target: WhatsApp-level vibe.
+          </p>
+          <p class="project-meta">Status: In Progress</p>
         </article>
         <article class="project-card glass">
-          <h3>DSR Toe</h3>
-          <p class="project-tagline">> game_start --mode tictactoe --fx glow</p>
-          <p class="project-meta">status: playable | stack: js + css</p>
+          <h3>DSR Toe (Tic Tac Toe)</h3>
+          <p class="project-tagline">
+            Colorful mini game with restart/new game features — perfect for quick fun.
+          </p>
+          <p class="project-meta">Status: Playable</p>
         </article>
         <article class="project-card glass">
-          <h3>Game Store UI</h3>
-          <p class="project-tagline">> ui_mock --section games --coins enabled</p>
-          <p class="project-meta">status: concept | perfect for expansion</p>
+          <h3>DSR Game Store UI</h3>
+          <p class="project-tagline">
+            Concept UI for a small game hub — coins, more games, clean cards and layout.
+          </p>
+          <p class="project-meta">Status: Concept</p>
         </article>
       </div>
     </section>
@@ -149,39 +158,39 @@
     <!-- CONTACT -->
     <section id="contact" class="section animate-on-scroll">
       <div class="section-header">
-        <p class="pill">[ CONTACT ]</p>
-        <h2>init_connection</h2>
+        <p class="pill">Contact</p>
+        <h2>Let’s Talk</h2>
       </div>
 
       <div class="contact-layout">
-        <form class="contact-form glass terminal-window" name="contact" method="POST" data-netlify="true">
+        <form class="contact-form glass" name="contact" method="POST" data-netlify="true">
           <input type="hidden" name="form-name" value="contact" />
           <label>
             Name
-            <input type="text" name="name" placeholder="anon_user" required />
+            <input type="text" name="name" placeholder="Your name" required />
           </label>
           <label>
             Email / Insta ID
-            <input type="text" name="contact" placeholder="example@domain / @insta" required />
+            <input type="text" name="contact" placeholder="example@gmail.com / @insta" required />
           </label>
           <label>
             Message
-            <textarea name="message" rows="4" placeholder="enter payload / idea here..." required></textarea>
+            <textarea name="message" rows="4" placeholder="Kya banana hai, batao..." required></textarea>
           </label>
-          <button type="submit" class="btn primary full">> transmit_packet</button>
+          <button type="submit" class="btn primary full">📤 Send Message</button>
           <p class="form-note">
-            * Netlify deploy ke baad ye form realtime submissions store karega.
+            Netlify par deploy karoge to ye form direct submissions store karega.
           </p>
         </form>
 
         <div class="contact-info glass">
-          <h3>Social Ports</h3>
-          <p>Abhi placeholder links hain, baad me real profiles se replace kar sakte ho.</p>
+          <h3>Social Links</h3>
+          <p>Abhi placeholder links hain, baad mein real profiles se replace kar sakte ho.</p>
           <div class="social-links">
-            <a href="https://instagram.com" target="_blank">port_01 :: Instagram</a>
-            <a href="https://youtube.com" target="_blank">port_02 :: YouTube</a>
-            <a href="https://github.com" target="_blank">port_03 :: GitHub</a>
-            <a href="https://discord.com" target="_blank">port_04 :: Discord</a>
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+            <a href="https://youtube.com" target="_blank">YouTube</a>
+            <a href="https://github.com" target="_blank">GitHub</a>
+            <a href="https://discord.com" target="_blank">Discord</a>
           </div>
         </div>
       </div>
@@ -189,7 +198,7 @@
   </main>
 
   <footer class="footer glass">
-    <p>© <span id="year"></span> DSR OGGY // all signals monitored // hacker mode active █</p>
+    <p>© <span id="year"></span> DSR OGGY • Hacker vibes, user-friendly UI 😎</p>
   </footer>
 
   <script src="script.js"></script>
