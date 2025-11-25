@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DSR OGGY LTD • Game & Info Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="dsr-logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <img src="dsr-logo.png" alt="DSR OGGY Logo" class="logo-img" />
+        <div class="brand-text">
+          <div class="brand-name">DSR OGGY LTD</div>
+          <div class="brand-tagline">Game & Info Hub • India</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <button class="nav-link" data-scroll="#hero">Home</button>
+        <button class="nav-link" data-scroll="#downloads">Downloads</button>
+        <button class="nav-link" data-scroll="#media">Media</button>
+        <button class="nav-link" data-scroll="#info">Info Hub</button>
+      </nav>
+      <div class="header-right">
+        <div class="status-chip">
+          <span class="status-dot"></span>
+          Website Live • v1.0
+        </div>
+        <button class="primary-ghost" data-scroll="#downloads">
+          ⬇ Quick Downloads
+        </button>
+      </div>
+    </header>
+
+    <!-- Main layout -->
+    <main class="layout">
+      <!-- Left column -->
+      <section class="column" id="hero">
+        <!-- Hero card -->
+        <section class="card hero-card">
+          <header class="card-header">
+            <span class="pill pill-success">Secured By Knox</span>
+            <span class="pill pill-outline">Clean • Fast • No ads</span>
+          </header>
+
+          <div class="hero-content">
+            <h1 class="hero-title">
+              All your <span class="accent-gradient">DSR games & media</span> in one place.
+            </h1>
+            <p class="hero-subtitle">
+              A professional hub for DSR OGGY games, own projects and assets.
+              Play in browser or download builds for PC and Android.
+            </p>
+
+            <div class="hero-actions">
+              <a href="DSR-TOE-GAMER-PROFILE-LOGIN-SINGLE.html" class="button primary">
+                ▶ Play main game
+              </a>
+              <a href="#downloads" class="button secondary">
+                ⬇ Open downloads
+              </a>
+            </div>
+
+            <div class="hero-meta">
+              <span class="meta-pill">Games • Music • Media • Guides</span>
+              <span class="meta-text">Maintained by DSR OGGY LTD</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Games card -->
+        <section class="card" id="games">
+          <header class="section-header">
+            <div>
+              <h2 class="section-title">Games catalog</h2>
+              <p class="section-subtitle">Click to open game or download assets.</p>
+            </div>
+            <span class="pill pill-outline">DSR Game Store</span>
+          </header>
+
+          <div class="games-grid">
+            <!-- Game 1 -->
+            <a class="game-card" href="dsr-toe/index.html">
+              <div class="game-header">
+                <span class="game-pill">Puzzle</span>
+                <span class="game-platform">Web • Mobile</span>
+              </div>
+              <h3 class="game-name">DSR Toe</h3>
+              <p class="game-description">Tic-tac-toe with a clean, minimal interface.</p>
+              <div class="game-footer">
+                <span class="tag">Beginner friendly</span>
+                <span class="cta">Open game →</span>
+              </div>
+            </a>
+
+            <!-- Game 2 -->
+            <a class="game-card game-card--disabled" href="javascript:void(0)">
+              <div class="game-header">
+                <span class="game-pill">Arcade</span>
+                <span class="game-platform">In planning</span>
+              </div>
+              <h3 class="game-name">Oggy Runner</h3>
+              <p class="game-description">Endless runner concept. Assets and builds coming soon.</p>
+              <div class="game-footer">
+                <span class="tag">In development</span>
+                <span class="cta">Coming soon</span>
+              </div>
+            </a>
+
+            <!-- Game 3 -->
+            <a class="game-card game-card--disabled" href="javascript:void(0)">
+              <div class="game-header">
+                <span class="game-pill">Multiplayer</span>
+                <span class="game-platform">Concept</span>
+              </div>
+              <h3 class="game-name">DSR Chat Arena</h3>
+              <p class="game-description">Chat + mini-games idea preview for future projects.</p>
+              <div class="game-footer">
+                <span class="tag">Concept only</span>
+                <span class="cta">Preview</span>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <!-- Media / Movies (only own legal content) -->
+        <section class="card" id="media">
+          <header class="section-header">
+            <div>
+              <h2 class="section-title">Media section</h2>
+              <p class="section-subtitle">Host your own short films, edits or legal content only.</p>
+            </div>
+          </header>
+
+          <div class="downloads-list">
+            <article class="download-row">
+              <div>
+                <h3 class="download-title">DSR Edits / Short videos</h3>
+                <p class="download-description">Upload your own content here. Avoid pirated movies.</p>
+              </div>
+              <a class="download-link" href="#" onclick="alert('Add your own video file link here, e.g. mp4 from your storage.'); return false;">
+                Setup link
+              </a>
+            </article>
+
+            <article class="download-row">
+              <div>
+                <h3 class="download-title">Music & beats</h3>
+                <p class="download-description">Non-copyright or self-made music for your projects.</p>
+              </div>
+              <a class="download-link" href="music-pack.zip" download>
+                Download
+              </a>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <!-- Right column -->
+      <aside class="column">
+        <!-- XP / profile card -->
+        <section class="card">
+          <header class="profile-header">
+            <div>
+              <h2 class="profile-title">Upgrades Coming Soon</h2>
+              <p class="profile-subtitle">Developer profile • ©DSR OGGY</p>
+            </div>
+            <span class="pill pill-soft" id="xp-label">Developing • 73%</span>
+          </header>
+
+          <div class="profile-body">
+            <div class="profile-row">
+              <div class="profile-avatar">D</div>
+              <div>
+                <div class="profile-name">Developed By - DSR OGGY</div>
+                <div class="profile-meta">Upgrades Progress.</div>
+              </div>
+            </div>
+
+            <div class="xp-block">
+              <div class="xp-header-row">
+                <span class="xp-label">XP progress</span>
+                <span class="xp-value" id="xp-text">730 / 1000 XP</span>
+              </div>
+              <div class="xp-bar">
+                <div class="xp-bar-fill" id="xp-bar-fill"></div>
+              </div>
+              <div class="xp-footer-row">
+                <span class="xp-note">Shown Updates Here</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Downloads card -->
+        <section class="card" id="downloads">
+          <header class="section-header">
+            <div>
+              <h2 class="section-title">Direct downloads</h2>
+              <p class="section-subtitle">Professional blue links, easy to share.</p>
+            </div>
+          </header>
+
+          <div class="downloads-list">
+            <!-- Game ZIP -->
+            <article class="download-row">
+              <div>
+                <h3 class="download-title">Game ZIP (PC build)</h3>
+                <p class="download-description">Windows build or full project folder.</p>
+              </div>
+              <a class="download-link" href="game.zip" download>
+                Download
+              </a>
+            </article>
+
+            <!-- APK -->
+            <article class="download-row">
+              <div>
+                <h3 class="download-title">Android APK</h3>
+                <p class="download-description">Installable build for Android devices.</p>
+              </div>
+              <a class="download-link" href="dsr-game.apk" download>
+                Download
+              </a>
+            </article>
+
+            <!-- Templates -->
+            <article class="download-row">
+              <div>
+                <h3 class="download-title">Templates</h3>
+                <p class="download-description">Reusable HTML / UI templates by DSR.</p>
+              </div>
+              <a class="download-link" href="templates.zip" download>
+                Download
+              </a>
+            </article>
+          </div>
+        </section>
+
+        <!-- Info Hub (safe, educational only) -->
+        <section class="card" id="info">
+          <header class="section-header">
+            <div>
+              <h2 class="section-title">Info hub</h2>
+              <p class="section-subtitle">We Not Promote Any Illigal Activities Educational Purpose Only.</p>
+            </div>
+          </header>
+
+          <div class="info-grid">
+            <article class="info-card">
+              <h3 class="info-title">Mobile number , VC, ADDHAR Info</h3>
+              <p class="info-text">
+                This Feature Now Coming Soon Stay with Us Id Password Given In This Website.
+                <br>
+                <a href="https://info.anishexploits.site" target="_blank" rel="noopener noreferrer">
+                  info.anishexploits.site
+                </a>
+              </p>
+            </article>
+
+            <article class="info-card">
+              <h3 class="info-title">This Feature Is Open Now</h3>
+              <p class="info-text">
+                Ye section mein Number,Vehicle,Aadhar  <strong>Info Free Unlimited </strong> hai. Sirf yahi se direct owner ko message jaayega.
+              </p>
+              <p class="info-text" style="margin-top: 8px;">
+                <a href="only-paid-contact.html" class="button secondary" target="_blank" rel="noopener noreferrer">
+                  Extraxt Details(Open Now)
+                </a>
+              </p>
+            </article>
+
+            <article class="info-card">
+              <h3 class="info-title">Unlimited Sms Call Bomb</h3>
+              <p class="info-text">
+                Learn why you should never share ID numbers publicly and how to keep them safe.
+                 <a href="https://anishexploits.site/bomber/" target="_blank" rel="noopener noreferrer">
+                  anishexploits.site/bomber/
+                </a>
+              </p>
+            </article>
+
+            <article class="info-card">
+              <h3 class="info-title">Demo Testing Mobile Number Info </h3>
+              <p class="info-text">
+                Use tools only for learning, security testing on your own devices and legal purposes.
+                <br>
+                <a href="https://anishexploits.site/testing/" target="_blank" rel="noopener noreferrer">
+                  anishexploits.site/testing
+                </a>
+              </p>
+            </article>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© <span id="year"></span> DSR OGGY LTD • All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Contact</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

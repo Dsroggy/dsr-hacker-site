@@ -1,0 +1,4952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dsr Toe - DSR OGGY LTD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- App Icon -->
+  <link rel="icon" type="image/png" href="dsr-logo.png" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb);
+      background-size: 300% 300%;
+      animation: gradientMove 12s ease infinite;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    body.dark {
+      background: radial-gradient(circle at top, #020617, #0f172a, #020617);
+    }
+
+    body.theme-bgmi {
+      background: linear-gradient(135deg, #1b4332, #2d6a4f, #ffba08, #d00000);
+      background-size: 300% 300%;
+      animation: gradientMove 14s ease infinite;
+    }
+
+    body.theme-neon {
+      background: radial-gradient(circle at top, #0f0c29, #302b63, #24243e);
+      background-size: 250% 250%;
+      animation: gradientMove 14s ease infinite;
+    }
+
+    body.theme-retro {
+      background: linear-gradient(135deg, #ffafbd, #ffc3a0, #2193b0, #6dd5ed);
+      background-size: 300% 300%;
+      animation: gradientMove 14s ease infinite;
+    }
+
+    .game-container {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255, 255, 255, 0.14);
+      border-radius: 20px;
+      padding: 16px 16px 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    body.dark .game-container {
+      background: rgba(15,23,42,0.9);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+    }
+
+    /* Logo row */
+    .logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+      width: 100%;
+    }
+
+    .logo-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at top, #0f172a, #020617);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px rgba(56,189,248,0.8);
+      overflow: hidden;
+    }
+
+    .logo-circle .logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    body.dark .logo-circle {
+      background: radial-gradient(circle at top, #020617, #020617);
+      box-shadow: 0 0 14px rgba(59,130,246,0.9);
+    }
+
+    .logo-text {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    /* RIGHT side container (coin + more games) */
+    .logo-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ⭐ More Games button */
+    .more-games-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.72rem;
+      cursor: pointer;
+      background: rgba(15,23,42,0.9);
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+      white-space: nowrap;
+    }
+
+    .more-games-btn span {
+      font-size: 0.9rem;
+    }
+
+    body.dark .more-games-btn {
+      background: rgba(15,23,42,0.95);
+    }
+
+    .more-games-btn:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .title {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    .sub-title {
+      text-align: center;
+      font-size: 0.82rem;
+      opacity: 0.9;
+      margin-bottom: 12px;
+    }
+
+    .status {
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.82);
+      color: #111827;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-width: 70%;
+      transform: translateX(15%);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark .status {
+      background: rgba(15,23,42,0.95);
+      color: #e5e7eb;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34,197,94,0.8);
+    }
+
+    .board-wrapper {
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      background: rgba(0,0,0,0.3);
+      padding: 8px;
+      border-radius: 18px;
+      transition: background 0.3s ease;
+    }
+
+    .board.compact {
+      gap: 6px;
+    }
+
+    body.dark .board {
+      background: rgba(15,23,42,0.9);
+    }
+
+    .cell {
+      background: rgba(255,255,255,0.95);
+      border: none;
+      border-radius: 16px;
+      font-size: 2.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+      aspect-ratio: 1 / 1;
+      touch-action: manipulation;
+    }
+
+    .board.compact .cell {
+      font-size: 1.6rem;
+    }
+
+    .cell:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+      background: #ffffff;
+    }
+
+    body.dark .cell {
+      background: #0f172a;
+      color: #e5e7eb;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.7);
+    }
+
+    .cell.X {
+      color: #2563eb;
+      text-shadow: 0 0 10px rgba(37,99,235,0.7);
+    }
+
+    .cell.O {
+      color: #dc2626;
+      text-shadow: 0 0 10px rgba(220,38,38,0.7);
+    }
+
+    /* Laser win effect */
+    .cell.win {
+      position: relative;
+      background: radial-gradient(circle at center, #e0f2fe, #0284c7);
+      color: #0b1120;
+      transform: scale(1.05);
+      animation: laserGlow 0.7s ease-in-out infinite alternate;
+      box-shadow: 0 0 18px rgba(56,189,248,0.9);
+    }
+
+    .cell.win::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(
+        90deg,
+        rgba(248,250,252,0),
+        rgba(248,250,252,0.9),
+        rgba(248,250,252,0)
+      );
+      opacity: 0.9;
+      mix-blend-mode: screen;
+      animation: sweep 0.9s linear infinite;
+    }
+
+    @keyframes laserGlow {
+      0%   { transform: scale(1.02); box-shadow: 0 0 8px  rgba(56,189,248,0.6); }
+      100% { transform: scale(1.08); box-shadow: 0 0 24px rgba(56,189,248,1); }
+    }
+
+    @keyframes sweep {
+      0%   { transform: translateX(-120%); }
+      100% { transform: translateX(120%); }
+    }
+
+    .btn-row {
+      margin-top: 16px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #fff;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+      min-width: 110px;
+      touch-action: manipulation;
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(0.97);
+      box-shadow: 0 3px 9px rgba(0,0,0,0.3);
+      filter: brightness(0.96);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #3b82f6);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #ec4899, #f97316);
+    }
+
+    .btn-online {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+    }
+
+    .btn-settings {
+      background: linear-gradient(135deg, #10b981, #059669);
+    }
+
+    .btn-home {
+      background: linear-gradient(135deg, #facc15, #f97316);
+    }
+
+    .score-row {
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.85rem;
+      background: rgba(255,255,255,0.9);
+      padding: 10px;
+      border-radius: 14px;
+      color: #111827;
+    }
+
+    body.dark .score-row {
+      background: rgba(15,23,42,0.95);
+      color: #e5e7eb;
+    }
+
+    .score-box {
+      flex: 1;
+      text-align: center;
+    }
+
+    .score-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      margin-bottom: 3px;
+      font-weight: 600;
+    }
+
+    .score-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .score-x .score-label { color: #1d4ed8; }
+    .score-o .score-label { color: #b91c1c; }
+    .score-draws .score-label { color: #4b5563; }
+
+    body.dark .score-x .score-label { color: #60a5fa; }
+    body.dark .score-o .score-label { color: #f97373; }
+
+    .online-info {
+      margin: 0 auto 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.75rem;
+    }
+
+    body.dark .online-info {
+      background: rgba(15,23,42,0.95);
+    }
+
+    .online-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      color: #022c22;
+      letter-spacing: 0.6px;
+    }
+
+    .online-room {
+      opacity: 0.9;
+    }
+
+    .online-status {
+      opacity: 0.8;
+      font-style: italic;
+    }
+
+    .settings-menu {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 260px;
+      background: rgba(255,255,255,0.97);
+      color: #111827;
+      border-radius: 18px;
+      padding: 18px 16px;
+      display: none;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+      z-index: 10;
+    }
+
+    body.dark .settings-menu {
+      background: #020617;
+      color: #e5e7eb;
+    }
+
+    .settings-menu h3 {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+
+    .toggle {
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .toggle input, .toggle select {
+      transform-origin: right center;
+    }
+
+    .theme-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .theme-btn {
+      flex: 1 1 45%;
+      border-radius: 999px;
+      border: none;
+      padding: 5px 8px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      background: rgba(148,163,184,0.25);
+      color: inherit;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+    }
+
+    .theme-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+
+    .theme-btn.active {
+      background: #6366f1;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    body.dark .theme-btn {
+      background: rgba(15,23,42,0.9);
+    }
+
+    /* Victory overlay */
+    .win-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      background: radial-gradient(circle at center, rgba(15,23,42,0.85), transparent 60%);
+      z-index: 9;
+      padding: 0 12px;
+    }
+
+    .win-overlay.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .victory-card {
+      pointer-events: auto;
+      max-width: 320px;
+      width: 100%;
+      background: linear-gradient(135deg, #020617, #0f172a, #1e293b);
+      border-radius: 22px;
+      padding: 16px 14px 14px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.75);
+      border: 1px solid rgba(148,163,184,0.5);
+      text-align: center;
+      color: #e5e7eb;
+    }
+
+    .victory-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .victory-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 2px solid rgba(96,165,250,0.8);
+      box-shadow: 0 0 15px rgba(56,189,248,0.8);
+      background: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .victory-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .victory-brand {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      opacity: 0.9;
+    }
+
+    .victory-brand span {
+      display: block;
+    }
+
+    .victory-brand span:last-child {
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .victory-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .victory-sub {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-bottom: 10px;
+    }
+
+    .victory-player {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .victory-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(74,222,128,0.8);
+      color: #bbf7d0;
+      margin-bottom: 8px;
+    }
+
+    .victory-footer {
+      font-size: 0.72rem;
+      opacity: 0.8;
+    }
+
+    .victory-footer span {
+      color: #facc15;
+      font-weight: 600;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0,0); }
+      20% { transform: translate(-4px, 2px); }
+      40% { transform: translate(4px, -2px); }
+      60% { transform: translate(-3px, 3px); }
+      80% { transform: translate(3px, -3px); }
+      100% { transform: translate(0,0); }
+    }
+
+    .game-container.shake {
+      animation: shake 0.4s ease-in-out;
+    }
+
+    .home-section {
+      margin-top: 14px;
+    }
+
+    .input-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+    }
+
+    .input-row label {
+      opacity: 0.9;
+    }
+
+    .home-input {
+      border-radius: 999px;
+      padding: 8px 12px;
+      border: none;
+      outline: none;
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.95);
+      color: #111827;
+    }
+
+    body.dark .home-input {
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+
+    .home-btn-row {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .firebase-status {
+      font-size: 0.72rem;
+      text-align: center;
+      margin-bottom: 6px;
+      opacity: 0.85;
+    }
+
+    .firebase-status span {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+    }
+
+    .history-section {
+      margin-top: 12px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 14px;
+      padding: 8px 10px;
+      color: #111827;
+      font-size: 0.8rem;
+      max-height: 140px;
+      overflow-y: auto;
+    }
+
+    body.dark .history-section {
+      background: rgba(15,23,42,0.95);
+      color: #e5e7eb;
+    }
+
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      opacity: 0.9;
+    }
+
+    .history-header button {
+      border: none;
+      border-radius: 999px;
+      padding: 2px 10px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      background: rgba(148,163,184,0.4);
+      color: inherit;
+    }
+
+    .history-header button:hover {
+      filter: brightness(0.95);
+    }
+
+    .history-list {
+      list-style: none;
+    }
+
+    .history-item {
+      padding: 3px 0;
+      border-bottom: 1px solid rgba(148,163,184,0.4);
+    }
+
+    .history-item:last-child {
+      border-bottom: none;
+    }
+
+    .leaderboard-section {
+      margin-top: 8px;
+    }
+
+    .chat-section {
+      margin-top: 8px;
+    }
+
+    .chat-messages {
+      max-height: 100px;
+      overflow-y: auto;
+      padding-right: 4px;
+      margin-bottom: 6px;
+      font-size: 0.78rem;
+    }
+
+    .chat-message {
+      margin-bottom: 3px;
+    }
+
+    .chat-sender {
+      font-weight: 600;
+      margin-right: 4px;
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .chat-input {
+      flex: 1;
+      border-radius: 999px;
+      padding: 6px 10px;
+      border: none;
+      outline: none;
+      font-size: 0.8rem;
+    }
+
+    body.dark .chat-input {
+      background: #020617;
+      color: #e5e7eb;
+    }
+
+    .chat-section button {
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: rgba(148,163,184,0.6);
+      color: inherit;
+    }
+
+    .chat-section button:hover {
+      filter: brightness(0.95);
+    }
+
+
+  /* DSR Gamer Profile bar */
+  .profile-bar {
+    margin: 8px 0 4px;
+    padding: 8px 10px;
+    border-radius: 14px;
+    background: rgba(15,23,42,0.9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    gap: 8px;
+  }
+  body.dark .profile-bar {
+    background: rgba(15,23,42,0.95);
+  }
+  .profile-bar-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .profile-bar-title {
+    font-weight: 600;
+  }
+  .profile-bar-tag {
+    opacity: 0.8;
+    font-size: 0.72rem;
+  }
+  .profile-btn {
+    border: none;
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    background: linear-gradient(135deg, #6366f1, #3b82f6);
+    color: #e5e7eb;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+    white-space: nowrap;
+  }
+  .profile-btn:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+  }
+
+  .profile-overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(15,23,42,0.9), rgba(15,23,42,0.7));
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1300;
+  }
+  .profile-overlay.show {
+    display: flex;
+  }
+  .profile-card {
+    width: 100%;
+    max-width: 340px;
+    background: linear-gradient(145deg, #020617, #0f172a, #111827);
+    border-radius: 20px;
+    padding: 16px 16px 14px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    border: 1px solid rgba(148,163,184,0.6);
+    color: #e5e7eb;
+  }
+  .profile-card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+  }
+  .profile-sub {
+    font-size: 0.78rem;
+    opacity: 0.85;
+    margin-bottom: 10px;
+  }
+  .profile-input-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+  }
+  .profile-input-row label {
+    opacity: 0.9;
+  }
+  .profile-input-row input {
+    border-radius: 999px;
+    padding: 7px 10px;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+    background: #020617;
+    color: #e5e7eb;
+  }
+  .profile-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .profile-inline-btn {
+    min-width: 0;
+    padding-inline: 12px;
+  }
+  .profile-hint {
+    font-size: 0.72rem;
+    opacity: 0.8;
+    text-align: left;
+  }
+
+
+    /* 🧧 Daily Reward & Shop overlays */
+    .overlay-center {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1400;
+      background: radial-gradient(circle at center, rgba(15,23,42,0.9), rgba(15,23,42,0.7));
+    }
+    .overlay-center.show {
+      display: flex;
+    }
+    .mini-card {
+      width: 100%;
+      max-width: 320px;
+      background: linear-gradient(145deg, #020617, #0f172a, #111827);
+      border-radius: 20px;
+      padding: 16px 16px 14px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      border: 1px solid rgba(148,163,184,0.6);
+      color: #e5e7eb;
+      font-size: 0.82rem;
+    }
+    .mini-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+    .mini-card p {
+      margin-bottom: 8px;
+      opacity: 0.9;
+    }
+    .mini-card .mini-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      margin-top: 8px;
+    }
+
+
+    /* 🧧 Overlays for Daily Reward, Shop, Avatar picker */
+    .overlay-center {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1400;
+      background: radial-gradient(circle at center, rgba(15,23,42,0.9), rgba(15,23,42,0.7));
+    }
+    .overlay-center.show {
+      display: flex;
+    }
+    .mini-card {
+      width: 100%;
+      max-width: 320px;
+      background: linear-gradient(145deg, #020617, #0f172a, #111827);
+      border-radius: 20px;
+      padding: 16px 16px 14px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      border: 1px solid rgba(148,163,184,0.6);
+      color: #e5e7eb;
+      font-size: 0.82rem;
+    }
+    .mini-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+    .mini-card p {
+      margin-bottom: 8px;
+      opacity: 0.9;
+    }
+    .mini-card .mini-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .avatar-choice-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+    .avatar-choice-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      background: rgba(15,23,42,0.9);
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .avatar-choice-btn span {
+      font-size: 1rem;
+    }
+
+    /* Splash */
+    .splash {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #020617, #0f172a, #020617);
+      color: #e5e7eb;
+      z-index: 1000;
+      transition: opacity 0.4s ease;
+    }
+
+    .splash.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .splash-title {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      animation: splashPop 0.7s ease-out forwards;
+    }
+
+    .splash-sub {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      animation: splashFade 1.1s ease-out forwards;
+    }
+
+    @keyframes splashPop {
+      0%   { transform: scale(0.6); opacity: 0; }
+      60%  { transform: scale(1.08); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes splashFade {
+      0%   { opacity: 0; transform: translateY(8px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Avatar row */
+    .avatar-row {
+      margin: 8px auto 10px;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    .avatar-pill {
+      flex: 1;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      opacity: 0.9;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      text-align: center;
+    }
+
+    body.dark .avatar-pill {
+      background: rgba(15,23,42,0.95);
+    }
+
+    .avatar-pill.active {
+      box-shadow: 0 0 12px rgba(250,204,21,0.9);
+      transform: translateY(-1px);
+    }
+
+    /* ⭐ NEW: Player profile card + XP bar */
+    .profile-card-xp {
+      margin: 4px auto 10px;
+      padding: 10px 10px 9px;
+      border-radius: 16px;
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.95), rgba(15,23,42,0.98));
+      border: 1px solid rgba(148,163,184,0.6);
+      box-shadow: 0 10px 24px rgba(15,23,42,0.9);
+      font-size: 0.78rem;
+    }
+
+    .profile-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .profile-player-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .profile-player-tag {
+      font-size: 0.7rem;
+      opacity: 0.8;
+    }
+
+    .profile-level-badge {
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #22c55e, #a3e635);
+      color: #022c22;
+      box-shadow: 0 0 12px rgba(34,197,94,0.7);
+    }
+
+    .profile-level-badge span {
+      font-size: 0.85rem;
+    }
+
+    .xp-label-text {
+      font-size: 0.72rem;
+      opacity: 0.85;
+      margin-bottom: 4px;
+    }
+
+    .xp-bar-outer {
+      width: 100%;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.95);
+      overflow: hidden;
+      border: 1px solid rgba(75,85,99,0.9);
+    }
+
+    .xp-bar-inner-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #22c55e, #a3e635, #facc15);
+      box-shadow: 0 0 14px rgba(132,204,22,0.7);
+      transition: width 0.4s ease;
+    }
+
+    .xp-stats-row {
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .xp-stat {
+      font-size: 0.7rem;
+      opacity: 0.9;
+    }
+
+    .xp-stat span {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    /* Coin bar (inline) */
+    .coin-bar {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      font-size: 0.8rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+      cursor: pointer;
+    }
+
+    .coin-icon {
+      font-size: 1rem;
+    }
+
+    .coin-value {
+      font-weight: 700;
+    }
+
+    .coin-sub {
+      font-size: 0.6rem;
+      opacity: 0.7;
+    }
+
+    /* 3-dot on HOME */
+    .more-btn {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(15,23,42,0.9);
+      color: #e5e7eb;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .more-menu {
+      position: absolute;
+      top: 44px;
+      right: 12px;
+      background: rgba(15,23,42,0.97);
+      color: #e5e7eb;
+      border-radius: 12px;
+      padding: 6px;
+      font-size: 0.78rem;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+      display: none;
+      z-index: 11;
+      min-width: 180px;
+    }
+
+    .more-menu button {
+      display: block;
+      width: 100%;
+      text-align: left;
+      border: none;
+      background: transparent;
+      color: inherit;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .more-menu button:hover {
+      background: rgba(148,163,184,0.35);
+    }
+
+    /* 💰 Premium Wallet Styles */
+    .wallet-card {
+      margin-top: 8px;
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.18), rgba(15,23,42,0.98));
+      border-radius: 20px;
+      padding: 14px 14px 12px;
+      box-shadow: 0 16px 40px rgba(15,23,42,0.8);
+      border: 1px solid rgba(148,163,184,0.5);
+      color: #e5e7eb;
+    }
+
+    .wallet-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .wallet-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.9;
+    }
+
+    .wallet-badge {
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(34,197,94,0.12);
+      border: 1px solid rgba(74,222,128,0.7);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .wallet-main-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 10px;
+    }
+
+    .wallet-coins {
+      font-size: 1.8rem;
+      font-weight: 800;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .wallet-coins span {
+      font-size: 1rem;
+      opacity: 0.85;
+    }
+
+    .wallet-money {
+      text-align: right;
+      font-size: 0.82rem;
+      opacity: 0.85;
+    }
+
+    .wallet-money b {
+      font-size: 1rem;
+    }
+
+    .wallet-progress {
+      margin-top: 10px;
+    }
+
+    .wallet-progress-bar {
+      width: 100%;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      overflow: hidden;
+      border: 1px solid rgba(148,163,184,0.7);
+    }
+
+    .wallet-progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #22c55e, #a3e635);
+      transition: width 0.3s ease;
+    }
+
+    .wallet-progress-text {
+      margin-top: 4px;
+      font-size: 0.75rem;
+      opacity: 0.9;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .wallet-section {
+      margin-top: 12px;
+    }
+
+    .wallet-label {
+      font-size: 0.78rem;
+      opacity: 0.85;
+      margin-bottom: 4px;
+    }
+
+    .wallet-method-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    .wallet-method-btn {
+      flex: 1;
+      border-radius: 999px;
+      border: none;
+      padding: 6px 8px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      background: rgba(15,23,42,0.9);
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      opacity: 0.85;
+    }
+
+    .wallet-method-btn.active {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      opacity: 1;
+      box-shadow: 0 0 14px rgba(34,197,94,0.7);
+    }
+
+    .wallet-input {
+      width: 100%;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      padding: 7px 9px;
+      font-size: 0.82rem;
+      background: rgba(15,23,42,0.9);
+      color: #e5e7eb;
+    }
+
+    .wallet-input::placeholder {
+      color: rgba(148,163,184,0.85);
+    }
+
+    .wallet-hint {
+      margin-top: 3px;
+      font-size: 0.7rem;
+      opacity: 0.7;
+    }
+
+    .wallet-footer-text {
+      margin-top: 8px;
+      font-size: 0.72rem;
+      opacity: 0.8;
+      text-align: center;
+    }
+
+    .wallet-footer-text b {
+      color: #facc15;
+    }
+
+    /* 💳 Redeem custom popup */
+    .redeem-popup-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(15,23,42,0.9), rgba(15,23,42,0.6));
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+    }
+
+    .redeem-popup-overlay.show {
+      display: flex;
+    }
+
+    .redeem-popup-card {
+      width: 100%;
+      max-width: 310px;
+      background: linear-gradient(145deg, #020617, #0f172a, #111827);
+      border-radius: 20px;
+      padding: 16px 16px 14px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      border: 1px solid rgba(148,163,184,0.6);
+      text-align: center;
+    }
+
+    .redeem-popup-icon {
+      font-size: 2rem;
+      margin-bottom: 6px;
+    }
+
+    .redeem-popup-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .redeem-popup-sub {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #c4b5fd;
+      margin-bottom: 4px;
+    }
+
+    .redeem-popup-text {
+      font-size: 0.82rem;
+      opacity: 0.9;
+      margin-bottom: 10px;
+    }
+
+    .redeem-popup-highlight {
+      font-size: 0.75rem;
+      opacity: 0.85;
+      margin-bottom: 10px;
+    }
+
+    .redeem-popup-highlight span {
+      color: #facc15;
+      font-weight: 600;
+    }
+
+    .redeem-popup-btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .redeem-popup-foot {
+      margin-top: 6px;
+      font-size: 0.7rem;
+      opacity: 0.7;
+    }
+
+    /* 🎮 DSR Game Store Overlay */
+    .games-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(15,23,42,0.92), rgba(15,23,42,0.8));
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1200;
+    }
+
+    .games-overlay.show {
+      display: flex;
+    }
+
+    .games-card {
+      width: 100%;
+      max-width: 360px;
+      background: linear-gradient(135deg, #020617, #020617, #111827);
+      border-radius: 22px;
+      padding: 14px 14px 12px;
+      box-shadow: 0 22px 55px rgba(0,0,0,0.9);
+      border: 1px solid rgba(148,163,184,0.6);
+      color: #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      max-height: 80vh;
+    }
+
+    .games-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .games-card-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .games-card-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(59,130,246,0.8);
+      background: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 12px rgba(59,130,246,0.8);
+    }
+
+    .games-card-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .games-card-title-text {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.9;
+    }
+
+    .games-card-title-text span:last-child {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .games-close-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: rgba(15,23,42,0.9);
+      color: #e5e7eb;
+      font-size: 0.78rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .games-close-btn:hover {
+      background: rgba(30,64,175,0.9);
+    }
+
+    .games-card-sub {
+      font-size: 0.78rem;
+      opacity: 0.85;
+      margin-bottom: 8px;
+    }
+
+    .games-tag-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .games-tag {
+      font-size: 0.68rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.7);
+    }
+
+    .games-tag.hot {
+      border-color: rgba(248,113,113,0.9);
+      color: #fed7d7;
+    }
+
+    .games-tag.dsreco {
+      border-color: rgba(52,211,153,0.9);
+      color: #bbf7d0;
+    }
+
+    .games-list {
+      margin-top: 4px;
+      padding: 4px 0 2px;
+      border-radius: 14px;
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.9), rgba(15,23,42,0.98));
+      border: 1px solid rgba(51,65,85,0.9);
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .game-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-bottom: 1px solid rgba(30,41,59,0.9);
+      cursor: pointer;
+    }
+
+    .game-item:last-child {
+      border-bottom: none;
+    }
+
+    .game-thumb {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #1e293b, #020617);
+      font-size: 1.2rem;
+    }
+
+    .game-info {
+      flex: 1;
+    }
+
+    .game-title {
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    .game-meta {
+      font-size: 0.72rem;
+      opacity: 0.8;
+    }
+
+    .game-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 2px;
+    }
+
+    .game-pill {
+      font-size: 0.66rem;
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(75,85,99,0.9);
+      opacity: 0.85;
+    }
+
+    .game-pill.online {
+      border-color: rgba(59,130,246,0.9);
+      color: #bfdbfe;
+    }
+
+    .game-pill.local {
+      border-color: rgba(52,211,153,0.9);
+      color: #bbf7d0;
+    }
+
+    .game-pill.coming {
+      border-color: rgba(251,191,36,0.9);
+      color: #fef9c3;
+    }
+
+    .game-pill.dsr {
+      border-color: rgba(248,113,113,0.9);
+      color: #fee2e2;
+    }
+
+    .game-action {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .game-action-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.72rem;
+      cursor: pointer;
+      background: linear-gradient(135deg, #4b5563, #374151);
+      color: #e5e7eb;
+    }
+
+    .game-action-btn.primary {
+      background: linear-gradient(135deg, #6366f1, #3b82f6);
+    }
+
+    .game-action-label {
+      font-size: 0.64rem;
+      opacity: 0.75;
+    }
+
+    /* ⭐ NEW: in-store game details panel */
+    .games-detail-panel {
+      margin-top: 8px;
+      padding: 8px 10px;
+      border-radius: 14px;
+      background: radial-gradient(circle at bottom, rgba(15,23,42,0.9), rgba(15,23,42,0.98));
+      border: 1px solid rgba(55,65,81,0.9);
+      font-size: 0.78rem;
+    }
+
+    .games-detail-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 2px;
+    }
+
+    .games-detail-sub {
+      font-size: 0.76rem;
+      opacity: 0.85;
+      margin-bottom: 4px;
+    }
+
+    .games-detail-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    .games-detail-pill {
+      font-size: 0.68rem;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(148,163,184,0.7);
+      opacity: 0.9;
+    }
+
+    .games-detail-desc {
+      font-size: 0.76rem;
+      opacity: 0.88;
+    }
+
+    .games-card-foot {
+      margin-top: 6px;
+      font-size: 0.7rem;
+      opacity: 0.7;
+      text-align: center;
+    }
+
+    @media (max-width: 400px) {
+      .title {
+        font-size: 1.4rem;
+      }
+      .cell {
+        font-size: 1.8rem;
+      }
+      .status {
+        font-size: 0.85rem;
+        transform: translateX(0);
+        width: 100%;
+      }
+    }
+  
+    /* 🔐 DSR Neon Login Overlay */
+    #loginOverlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: radial-gradient(circle at top, #020617, #050016, #000);
+      z-index: 1500;
+    }
+    #loginOverlay.hidden {
+      display: none;
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 380px;
+      background: radial-gradient(circle at top, #1a0026, #050014 60%);
+      border-radius: 22px;
+      padding: 18px 18px 16px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.85);
+      border: 1px solid rgba(236,72,153,0.6);
+      position: relative;
+      overflow: hidden;
+      color: #e5e7eb;
+    }
+    .auth-glow {
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(236,72,153,0.35), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(129,140,248,0.35), transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+    .auth-inner {
+      position: relative;
+      z-index: 2;
+    }
+    .auth-title {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .auth-sub {
+      text-align: center;
+      font-size: 0.8rem;
+      opacity: 0.85;
+      margin-bottom: 10px;
+    }
+    .auth-tabs {
+      display: flex;
+      gap: 6px;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      margin-bottom: 10px;
+    }
+    .auth-tab {
+      flex: 1;
+      border-radius: 999px;
+      border: none;
+      padding: 6px 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      background: transparent;
+      color: #e5e7eb;
+      opacity: 0.7;
+    }
+    .auth-tab.active {
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      opacity: 1;
+      box-shadow: 0 0 14px rgba(236,72,153,0.8);
+    }
+    .auth-group {
+      margin-bottom: 8px;
+      font-size: 0.8rem;
+    }
+    .auth-group label {
+      display: block;
+      margin-bottom: 3px;
+      opacity: 0.85;
+    }
+    .auth-input {
+      width: 100%;
+      border-radius: 999px;
+      border: none;
+      outline: none;
+      padding: 8px 11px;
+      font-size: 0.86rem;
+      background: rgba(15,23,42,0.95);
+      color: #e5e7eb;
+    }
+    .auth-input::placeholder {
+      color: rgba(148,163,184,0.9);
+    }
+    .auth-btn {
+      width: 100%;
+      border-radius: 999px;
+      border: none;
+      padding: 9px 11px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 4px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #6366f1, #ec4899);
+      color: #f9fafb;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+    }
+    .auth-meta {
+      margin-top: 8px;
+      font-size: 0.75rem;
+      text-align: center;
+      opacity: 0.85;
+    }
+    .auth-meta span {
+      color: #f9a8d4;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .auth-message {
+      margin-top: 6px;
+      font-size: 0.78rem;
+      text-align: center;
+    }
+    .auth-message.error {
+      color: #fb7185;
+    }
+    .auth-message.success {
+      color: #4ade80;
+    }
+</style>
+</head>
+<body>
+  <!-- 🔐 DSR Neon Login Overlay (shown first) -->
+  <div id="loginOverlay">
+    <div class="auth-card">
+      <div class="auth-glow"></div>
+      <div class="auth-inner">
+        <div class="logo-row" style="margin-bottom:8px;">
+          <div class="logo-left">
+            <div class="logo-circle">
+              <img src="dsr-logo.png" alt="DSR Logo" class="logo-img" />
+            </div>
+            <div class="logo-text">DSR OGGY LTD</div>
+          </div>
+        </div>
+
+        <div class="auth-title">DSR TOE</div>
+        <div class="auth-sub">Login to enter the arena</div>
+
+        <div class="auth-tabs">
+          <button id="tabLogin" class="auth-tab active">Login</button>
+          <button id="tabSignup" class="auth-tab">Sign Up</button>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginFormBox">
+          <div class="auth-group">
+            <label for="loginEmail">Email</label>
+            <input id="loginEmail" class="auth-input" type="email" placeholder="you@example.com" />
+          </div>
+          <div class="auth-group">
+            <label for="loginPassword">Password</label>
+            <input id="loginPassword" class="auth-input" type="password" placeholder="Enter password" />
+          </div>
+          <button id="loginBtn" class="auth-btn" type="button">Enter Arena 🔓</button>
+          <div id="loginMsg" class="auth-message"></div>
+          <div class="auth-meta">
+            New here? <span id="showSignup">Create a DSR ID</span>
+          </div>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="signupFormBox" class="hidden">
+          <div class="auth-group">
+            <label for="signupName">Full Name</label>
+            <input id="signupName" class="auth-input" type="text" placeholder="Your gamer name" />
+          </div>
+          <div class="auth-group">
+            <label for="signupEmail">Email</label>
+            <input id="signupEmail" class="auth-input" type="email" placeholder="you@example.com" />
+          </div>
+          <div class="auth-group">
+            <label for="signupPassword">Password</label>
+            <input id="signupPassword" class="auth-input" type="password" placeholder="Min 6 characters" />
+          </div>
+          <div class="auth-group">
+            <label for="signupConfirmPassword">Confirm Password</label>
+            <input id="signupConfirmPassword" class="auth-input" type="password" placeholder="Re-type password" />
+          </div>
+          <button id="signupBtn" class="auth-btn" type="button">Create Account 🚀</button>
+          <div id="signupMsg" class="auth-message"></div>
+          <div class="auth-meta">
+            Already have an account? <span id="showLogin">Back to login</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Splash Screen -->
+
+  <div id="splash" class="splash">
+    <div class="splash-title">DSR TOE</div>
+    <div class="splash-sub">Loading arena...</div>
+
+  </div>
+
+  <!-- 🏠 HOME SCREEN -->
+  <div id="homeScreen" class="game-container">
+    <!-- 3-dot menu on HOME -->
+    <button id="moreBtn" class="more-btn">⋮</button>
+    <div id="moreMenu" class="more-menu">
+      <button id="menuSettingsBtn">⚙️ Settings</button>
+      <button id="menuUltraBtn">💣 5x5 Ultra Competitive</button>
+    </div>
+
+    <!-- Icon Row with coin + more games -->
+    <div class="logo-row">
+      <div class="logo-left">
+        <div class="logo-circle">
+          <img src="dsr-logo.png" alt="DSR Logo" class="logo-img" />
+        </div>
+        <div class="logo-text">DSR OGGY LTD</div>
+      </div>
+      <div class="logo-actions">
+        <div class="coin-bar" id="coinBarHome">
+          <div>
+            <span class="coin-icon">🪙</span>
+            <span class="coin-value" id="coinCountHome">0</span>
+          </div>
+          <div class="coin-sub">Redeemable soon</div>
+        </div>
+        <button class="more-games-btn" id="moreGamesBtnHome">
+          <span>🎮</span> More Games
+        </button>
+      </div>
+    </div>
+
+    <h1 class="title">Dsr Toe</h1>
+    <p class="sub-title">DSR Online Edition</p>
+    <p class="sub-title" id="welcomeText" style="margin-top:4px;">Welcome, Gamer 👋</p>
+
+    <div class="firebase-status">
+      Firebase: <span id="firebaseStatusText">Initializing...</span>
+    </div>
+
+    <div class="profile-bar">
+      <div class="profile-bar-main">
+        <div class="profile-bar-title" id="profileGreeting">DSR Gamer Profile</div>
+        <div class="profile-bar-tag" id="profileTag">Not logged in</div>
+      </div>
+      <button id="profileBtn" class="profile-btn">Login / Sign up</button>
+    </div>
+
+    <div class="home-section">
+      <div class="input-row">
+        <label for="player1Name">Player X Name</label>
+        <input id="player1Name" class="home-input" placeholder="e.g. DSR" />
+      </div>
+      <div class="input-row">
+        <label for="player2Name">Player O / Friend / AI Name</label>
+        <input id="player2Name" class="home-input" placeholder="e.g. Oggy / AI / Friend" />
+      </div>
+    </div>
+
+    <div class="home-btn-row">
+      <button class="btn btn-primary"   id="startVsAI">Play vs AI 🤖</button>
+      <button class="btn btn-secondary" id="startVsPlayer">2 Players (Same Device)</button>
+      <button class="btn btn-online"    id="startOnline">Online Multiplayer 🌐</button>
+      <button class="btn btn-secondary" id="spectateBtn">Spectate Room 👀</button>
+      <button class="btn btn-primary"   id="startLuckyMode">Lucky Start Mode 🎲</button>
+      <button class="btn btn-secondary" id="startCompetitiveMode">Competitive Mode 🏆 (4x4)</button>
+    </div>
+
+    <!-- 🎯 DSR Future Upgrades (Selection Only / Coming Soon) -->
+    <div class="history-section" style="margin-top:10px;">
+      <div class="history-header">
+        <span>DSR Upgrades</span>
+      </div>
+      <ul class="history-list">
+        <li class="history-item">
+          <button class="btn btn-secondary" id="optLeaderboard" style="width:100%;justify-content:flex-start;">
+            1️⃣ Leaderboard + Player Stats
+          </button>
+        </li>
+        <li class="history-item">
+          <button class="btn btn-secondary" id="optAvatar" style="width:100%;justify-content:flex-start;">
+            2️⃣ Avatar + Profile Design
+          </button>
+        </li>
+        <li class="history-item">
+          <button class="btn btn-secondary" id="optDailyShop" style="width:100%;justify-content:flex-start;">
+            3️⃣ Daily Rewards + Shop
+          </button>
+        </li>
+        <li class="history-item">
+          <button class="btn btn-secondary" id="optAI" style="width:100%;justify-content:flex-start;">
+            4️⃣ AI Upgrade & Effects
+          </button>
+        </li>
+        <li class="history-item">
+          <button class="btn btn-secondary" id="optOnlinePro" style="width:100%;justify-content:flex-start;">
+            5️⃣ Full Online Multiplayer (Real Server)
+          </button>
+        </li>
+      </ul>
+      <p style="margin-top:6px;font-size:0.72rem;opacity:0.85;">
+        Abhi ye options sirf planning ke liye hain. DSR boss jaisa bolega, next update me woh feature implement hoga. 💼🔥
+      </p>
+    </div>
+
+    <p style="margin-top:12px;font-size:0.75rem;opacity:0.9;text-align:center;">
+      Online: ek device pe <b>new</b> room banao, dusre pe wahi code se join karo.  
+      Spectator: kisi existing room ko sirf dekh sakte ho 👀
+    </p>
+  </div>
+
+  <!-- 🎮 GAME SCREEN -->
+  <div id="gameScreen" class="game-container" style="display:none;">
+    <!-- Icon Row with coin + more games -->
+    <div class="logo-row">
+      <div class="logo-left">
+        <div class="logo-circle">
+          <img src="dsr-logo.png" alt="DSR Logo" class="logo-img" />
+        </div>
+        <div class="logo-text">DSR OGGY LTD</div>
+      </div>
+      <div class="logo-actions">
+        <div class="coin-bar" id="coinBarGame">
+          <div>
+            <span class="coin-icon">🪙</span>
+            <span class="coin-value" id="coinCountGame">0</span>
+          </div>
+          <div class="coin-sub">Redeemable soon</div>
+        </div>
+        <button class="more-games-btn" id="moreGamesBtnGame">
+          <span>🎮</span> More Games
+        </button>
+      </div>
+    </div>
+
+    <h1 class="title">Dsr Toe</h1>
+    <p class="sub-title" id="modeText">Mode: Local</p>
+
+    <div class="online-info" id="onlineInfoBar" style="display:none;">
+      <span class="online-tag">ONLINE</span>
+      <span class="online-room" id="roomCodeText">Room: -----</span>
+      <span class="online-status" id="connectionStatusText">Status: Realtime</span>
+    </div>
+
+    <div class="status">
+      <span class="status-dot"></span>
+      <span id="statusText">Your turn (X)</span>
+    </div>
+
+    <!-- Avatar Row -->
+    <div class="avatar-row" id="avatarRow">
+      <div class="avatar-pill" id="avatarX"></div>
+      <div class="avatar-pill" id="avatarO"></div>
+    </div>
+
+    <!-- ⭐ NEW PROFILE + XP CARD -->
+    <div class="profile-card-xp">
+      <div class="profile-row-top">
+        <div>
+          <div class="profile-player-name" id="profilePlayerName">DSR Player</div>
+          <div class="profile-player-tag">Local legend • Tic Tac Toe</div>
+        </div>
+        <div class="profile-level-badge">
+          Lv <span id="xpLevel">1</span>
+        </div>
+      </div>
+      <div class="xp-label-text" id="xpText">0 / 100 XP</div>
+      <div class="xp-bar-outer">
+        <div class="xp-bar-inner-fill" id="xpBarFill"></div>
+      </div>
+      <div class="xp-stats-row">
+        <div class="xp-stat">
+          Wins
+          <span id="xpStatsWins">0</span>
+        </div>
+        <div class="xp-stat">
+          Losses
+          <span id="xpStatsLosses">0</span>
+        </div>
+        <div class="xp-stat">
+          Draws
+          <span id="xpStatsDraws">0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="board-wrapper">
+      <!-- Dynamic board -->
+      <div class="board" id="board"></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary"   id="restartBtn">🔁 Restart</button>
+      <button class="btn btn-secondary" id="newGameBtn">🔄 Reset Scores</button>
+      <button class="btn btn-settings"  id="settingsBtn">⚙️ Settings</button>
+      <button class="btn btn-home"      id="homeBtn">🏠 Home</button>
+    </div>
+
+    <div class="score-row">
+      <div class="score-box score-x">
+        <div class="score-label" id="playerXLabel">Player X</div>
+        <div class="score-value" id="scoreX">0</div>
+      </div>
+      <div class="score-box score-o">
+        <div class="score-label" id="playerOLabel">Player O</div>
+        <div class="score-value" id="scoreO">0</div>
+      </div>
+      <div class="score-box score-draws">
+        <div class="score-label">Draws</div>
+        <div class="score-value" id="scoreDraws">0</div>
+      </div>
+    </div>
+
+    <!-- MATCH HISTORY -->
+    <div class="history-section">
+      <div class="history-header">
+        <span>Match History</span>
+        <button id="clearHistoryBtn" type="button">Clear</button>
+      </div>
+      <ul id="historyList" class="history-list"></ul>
+    </div>
+
+    <!-- LEADERBOARD -->
+    <div class="history-section leaderboard-section">
+      <div class="history-header">
+        <span>Leaderboard</span>
+        <button id="refreshLeaderboardBtn" type="button">Refresh</button>
+      </div>
+      <ul id="leaderboardList" class="history-list"></ul>
+    </div>
+
+    <!-- CHAT -->
+    <div class="history-section chat-section">
+      <div class="history-header">
+        <span>Chat</span>
+        <span id="chatHintText" style="font-size:0.7rem;opacity:0.7;">Online mode only</span>
+      </div>
+      <div id="chatMessages" class="chat-messages"></div>
+      <div class="chat-input-row">
+        <input id="chatInput" class="chat-input" placeholder="Type message..." />
+        <button id="chatSendBtn" type="button">Send</button>
+      </div>
+    </div>
+
+    <!-- Custom Victory Overlay -->
+    <div class="win-overlay" id="winOverlay"></div>
+
+    <div class="settings-menu" id="settingsMenu">
+      <h3>Settings</h3>
+
+      <label class="toggle">
+        <span>Enable Sound Effects 🔉</span>
+        <input type="checkbox" id="soundToggle" checked />
+      </label>
+
+      <label class="toggle">
+        <span>Play vs AI 🤖</span>
+        <input type="checkbox" id="aiToggle" checked />
+      </label>
+
+      <label class="toggle">
+        <span>AI Difficulty 😈</span>
+        <select id="aiDifficulty" style="padding:4px 8px;border-radius:999px;border:none;outline:none;font-size:0.8rem;">
+          <option value="easy">Easy</option>
+          <option value="hard" selected>Hard</option>
+        </select>
+      </label>
+
+      <label class="toggle">
+        <span>Dark Mode 🌙</span>
+        <input type="checkbox" id="darkToggle" />
+      </label>
+
+      <hr style="margin:10px 0;opacity:0.4;border:none;border-top:1px solid rgba(148,163,184,0.5);" />
+
+      <div style="font-size:0.8rem;margin-bottom:6px;text-align:left;opacity:0.8;">
+        Theme
+      </div>
+      <div class="theme-row">
+        <button class="theme-btn active" data-theme="default">Default</button>
+        <button class="theme-btn" data-theme="bgmi">BGMI</button>
+        <button class="theme-btn" data-theme="neon">Neon</button>
+        <button class="theme-btn" data-theme="retro">Retro</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 💰 COIN SCREEN (PREMIUM) -->
+  <div id="coinScreen" class="game-container" style="display:none;">
+    <!-- Icon Row -->
+    <div class="logo-row">
+      <div class="logo-left">
+        <div class="logo-circle">
+          <img src="dsr-logo.png" alt="DSR Logo" class="logo-img" />
+        </div>
+        <div class="logo-text">DSR OGGY LTD</div>
+      </div>
+      <div class="logo-actions">
+        <button class="more-games-btn" id="moreGamesBtnCoin">
+          <span>🎮</span> More Games
+        </button>
+      </div>
+    </div>
+
+    <h1 class="title">DSR Wallet</h1>
+    <p class="sub-title">Withdraw your game rewards</p>
+
+    <div class="wallet-card">
+      <div class="wallet-header-row">
+        <div class="wallet-title">Current Balance</div>
+        <div class="wallet-badge">
+          <span>🪙</span>
+          <span>Redeemable Soon</span>
+        </div>
+      </div>
+
+      <div class="wallet-main-row">
+        <div class="wallet-coins">
+          <span id="coinCountWallet">0</span>
+          <span>coins</span>
+        </div>
+        <div class="wallet-money">
+          Approx Value<br />
+          <b>₹<span id="walletRupeesText">0.0</span></b>
+          <div style="font-size:0.68rem;opacity:0.7;">(Demo rate: 10 coins = ₹1)</div>
+        </div>
+      </div>
+
+      <div class="wallet-progress">
+        <div class="wallet-progress-bar">
+          <div id="walletProgressFill" class="wallet-progress-fill"></div>
+        </div>
+        <div class="wallet-progress-text">
+          <span id="walletProgressLabel">Min 100 coins to unlock withdraw</span>
+          <span id="walletProgressPercent">0%</span>
+        </div>
+      </div>
+
+      <div class="wallet-section">
+        <div class="wallet-label">Withdraw Method</div>
+        <div class="wallet-method-row">
+          <button class="wallet-method-btn active" data-method="upi" id="methodUpiBtn">UPI</button>
+          <button class="wallet-method-btn" data-method="paytm" id="methodPaytmBtn">Paytm</button>
+          <button class="wallet-method-btn" data-method="bank" id="methodBankBtn">Bank</button>
+        </div>
+      </div>
+
+      <div class="wallet-section">
+        <div class="wallet-label">Withdraw Amount (in coins)</div>
+        <input
+          id="withdrawAmount"
+          class="wallet-input"
+          type="number"
+          min="1"
+          placeholder="e.g. 150 (max: your balance)"
+        />
+        <div class="wallet-hint">
+          Tip: Empty chhodoge to hum <b>auto maximum coins</b> withdraw kar denge.
+        </div>
+      </div>
+
+      <div class="wallet-section" id="upiRow">
+        <div class="wallet-label">UPI ID</div>
+        <input
+          id="upiId"
+          class="wallet-input"
+          placeholder="example@upi"
+        />
+        <div class="wallet-hint">UPI ID sahi format me likho (jaise: dsr@oksbi).</div>
+      </div>
+
+      <div class="wallet-section" id="paytmRow" style="display:none;">
+        <div class="wallet-label">Paytm Number</div>
+        <input
+          id="paytmNo"
+          class="wallet-input"
+          type="tel"
+          maxlength="10"
+          placeholder="10 digit mobile number"
+        />
+        <div class="wallet-hint">Ye demo UI hai — abhi backend payment nahi laga hai.</div>
+      </div>
+
+      <div class="wallet-section" id="bankRow" style="display:none;">
+        <div class="wallet-label">Bank Account (Last 4 digits)</div>
+        <input
+          id="bankLast4"
+          class="wallet-input"
+          type="tel"
+          maxlength="4"
+          placeholder="XXXX"
+        />
+        <div class="wallet-hint">Full bank details mat le — sirf demo / masked dikhana safe hai.</div>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:16px;">
+      <button class="btn btn-online" id="withdrawBtn">Withdraw Coins 💸</button>
+      <button class="btn btn-home" id="coinBackBtn">⬅ Back</button>
+    </div>
+
+    <p class="wallet-footer-text">
+      Ye <b>frontend demo</b> hai. Actual money transfer ke liye aapko
+      <b>server + verification</b> add karna padega (UPI / Paytm API, etc).
+    </p>
+
+    <!-- 🧾 Custom Redeem Popup -->
+    <div id="redeemPopup" class="redeem-popup-overlay">
+      <div class="redeem-popup-card">
+        <div class="redeem-popup-icon">🪙</div>
+        <div class="redeem-popup-sub">DSR OGGY LTD WALLET</div>
+        <div class="redeem-popup-title">Redeemable Soon</div>
+        <div class="redeem-popup-text">
+          Withdraw system abhi <b>upgrade</b> ho raha hai.
+          Jaldi hi yahan se direct payout / rewards unlock honge.
+        </div>
+        <div class="redeem-popup-highlight">
+          Current Status: <span>Demo Only · No Real Money</span>
+        </div>
+        <button id="redeemPopupClose" class="btn btn-primary redeem-popup-btn">
+          OK, Got it ✅
+        </button>
+        <div class="redeem-popup-foot">
+          DSR OGGY LTD • Secure Gaming Experience
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎮 DSR Game Store Overlay -->
+  <div id="gamesOverlay" class="games-overlay">
+    <div class="games-card">
+      <div class="games-card-header">
+        <div class="games-card-title-row">
+          <div class="games-card-logo">
+            <img src="dsr-logo.png" alt="DSR Logo" />
+          </div>
+          <div class="games-card-title-text">
+            <span>DSR OGGY LTD</span>
+            <span>Game Store</span>
+          </div>
+        </div>
+        <button id="gamesCloseBtn" class="games-close-btn">
+          ✕ Close
+        </button>
+      </div>
+
+      <div class="games-card-sub">
+        Ek hi jagah se <b>DSR</b> ke saare games discover karo.  
+        Neeche ke games demo / coming soon state me hain.
+      </div>
+
+      <div class="games-tag-row">
+        <div class="games-tag hot">🔥 Hot Picks</div>
+        <div class="games-tag dsreco">⭐ DSR Recommended</div>
+        <div class="games-tag">⚡ Fast Match</div>
+      </div>
+
+      <div class="games-list">
+        <!-- Game 1 -->
+        <div class="game-item" data-game="toe">
+          <div class="game-thumb">⭕</div>
+          <div class="game-info">
+            <div class="game-title">DSR Toe Online</div>
+            <div class="game-meta">Classic & Competitive Tic Tac Toe</div>
+            <div class="game-pill-row">
+              <span class="game-pill online">Online</span>
+              <span class="game-pill local">Local</span>
+              <span class="game-pill dsr">Live Now</span>
+            </div>
+          </div>
+          <div class="game-action">
+            <button class="game-action-btn primary" id="openThisGameBtn">
+              Play Now
+            </button>
+            <div class="game-action-label">Ye hi current game hai ✅</div>
+          </div>
+        </div>
+
+        <!-- Game 2 -->
+        <div class="game-item" data-game="aim">
+          <div class="game-thumb">🎯</div>
+          <div class="game-info">
+            <div class="game-title">DSR Aim Trainer</div>
+            <div class="game-meta">Reflex & Tap speed challenge</div>
+            <div class="game-pill-row">
+              <span class="game-pill local">Single Player</span>
+              <span class="game-pill coming">Coming Soon</span>
+            </div>
+          </div>
+          <div class="game-action">
+            <button class="game-action-btn">
+              Details
+            </button>
+            <div class="game-action-label">Watch trailer – soon</div>
+          </div>
+        </div>
+
+        <!-- Game 3 -->
+        <div class="game-item" data-game="memory">
+          <div class="game-thumb">🧠</div>
+          <div class="game-info">
+            <div class="game-title">DSR Memory Flip</div>
+            <div class="game-meta">Card flip + memory puzzle</div>
+            <div class="game-pill-row">
+              <span class="game-pill local">Local</span>
+              <span class="game-pill coming">Coming Soon</span>
+            </div>
+          </div>
+          <div class="game-action">
+            <button class="game-action-btn">
+              Notify Me
+            </button>
+            <div class="game-action-label">Notification UI planned</div>
+          </div>
+        </div>
+
+        <!-- Game 4 -->
+        <div class="game-item" data-game="drift">
+          <div class="game-thumb">🏎️</div>
+          <div class="game-info">
+            <div class="game-title">DSR Drift Rush</div>
+            <div class="game-meta">Top-down arcade racing</div>
+            <div class="game-pill-row">
+              <span class="game-pill online">Online</span>
+              <span class="game-pill coming">Prototype</span>
+            </div>
+          </div>
+          <div class="game-action">
+            <button class="game-action-btn">
+              Coming Soon
+            </button>
+            <div class="game-action-label">Under development</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⭐ NEW: In-store details panel -->
+      <div class="games-detail-panel">
+        <div class="games-detail-title" id="gameDetailTitle">DSR Toe Online</div>
+        <div class="games-detail-sub" id="gameDetailSub">
+          Classic & Competitive Tic Tac Toe
+        </div>
+        <div class="games-detail-pill-row" id="gameDetailPills"></div>
+        <p class="games-detail-desc" id="gameDetailDesc">
+          Clean neon style tic tac toe designed for DSR players. Play classic 3x3,
+          competitive 4x4, or ultra 5x5 modes from a single place and earn coins + XP
+          for your profile.
+        </p>
+      </div>
+
+      <div class="games-card-foot">
+        Future me yahan se <b>direct install / join</b> link bhi aa sakta hai.  
+        Backend + deep links add karne ke baad full store ban jayega. 🚀
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 🔐 DSR Gamer Profile Login / Signup -->
+  <div id="profileOverlay" class="profile-overlay">
+    <div class="profile-card">
+      <h2>DSR Gamer Profile</h2>
+      <p class="profile-sub">Apna unique player name choose karo. Ye name leaderboard & profile me dikhega.</p>
+      <div class="profile-input-row">
+        <label for="profileNameInput">Player name</label>
+        <input id="profileNameInput" maxlength="16" placeholder="e.g. DSR_OGGY" />
+      </div>
+      <div class="profile-actions">
+        <button id="profileCancelBtn" class="btn btn-secondary profile-inline-btn">Cancel</button>
+        <button id="profileSaveBtn" class="btn btn-primary profile-inline-btn">Continue</button>
+      </div>
+      <button id="fbConnectBtn" class="fb-btn" style="margin-top:6px;">
+        <span>📘</span>
+        <span>Connect with Facebook (Demo)</span>
+      </button>
+      <p class="profile-hint">
+        Same name se dubara login karoge toh tumhara coins & XP isi device par safe rahenge.
+        Ye local profile system hai (offline friendly). Facebook connect real Facebook login flow use karta hai,
+        lekin iska appId tumhe apne Facebook Developer account se 'PASTE_YOUR_FACEBOOK_APP_ID_HERE' ki jagah daalna padega.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- 🧧 Daily Reward popup -->
+  <div id="rewardOverlay" class="overlay-center">
+    <div class="mini-card">
+      <h3>Daily Reward</h3>
+      <p>Roz ek baar yahan se free coins le sakte ho. Sirf aaj ke liye ek claim allowed hai.</p>
+      <p id="rewardStatusText" style="font-size:0.78rem;opacity:0.85;"></p>
+      <div class="mini-actions">
+        <button id="rewardCloseBtn" class="btn btn-secondary profile-inline-btn">Close</button>
+        <button id="rewardClaimBtn" class="btn btn-primary profile-inline-btn">Claim Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🛍️ DSR Shop popup -->
+  <div id="shopOverlay" class="overlay-center">
+    <div class="mini-card">
+      <h3>DSR Shop</h3>
+      <p>Coins use karke sirf cosmetic upgrades unlock honge (themes, vibes). Real paisa nahi lag raha.</p>
+      <ul style="font-size:0.78rem;opacity:0.9;margin-left:14px;">
+        <li>🎨 Neon Theme – 20 coins</li>
+        <li>🔥 BGMI Theme – 20 coins</li>
+        <li>🌈 Retro Theme – 20 coins</li>
+      </ul>
+      <p style="margin-top:6px;font-size:0.76rem;opacity:0.85;">Current balance: <span id="shopCoinText">0</span> coins</p>
+      <div class="mini-actions">
+        <button id="shopCloseBtn" class="btn btn-secondary profile-inline-btn">Close</button>
+        <button id="shopNeonBtn" class="btn btn-primary profile-inline-btn">Neon</button>
+        <button id="shopBgmiBtn" class="btn btn-primary profile-inline-btn">BGMI</button>
+        <button id="shopRetroBtn" class="btn btn-primary profile-inline-btn">Retro</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- 🧧 Daily Reward popup -->
+  <div id="rewardOverlay" class="overlay-center">
+    <div class="mini-card">
+      <h3>Daily Reward</h3>
+      <p>Roz ek baar yahan se free coins le sakte ho. Sirf aaj ke liye ek claim allowed hai.</p>
+      <p id="rewardStatusText" style="font-size:0.78rem;opacity:0.85;"></p>
+      <div class="mini-actions">
+        <button id="rewardCloseBtn" class="btn btn-secondary profile-inline-btn">Close</button>
+        <button id="rewardClaimBtn" class="btn btn-primary profile-inline-btn">Claim Now (+20)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🛍️ DSR Shop popup -->
+  <div id="shopOverlay" class="overlay-center">
+    <div class="mini-card">
+      <h3>DSR Shop</h3>
+      <p>Coins use karke sirf cosmetic themes unlock honge. Real paisa nahi lag raha, safe demo hai.</p>
+      <ul style="font-size:0.78rem;opacity:0.9;margin-left:14px;">
+        <li>🎨 Neon Theme – 20 coins</li>
+        <li>🔥 BGMI Theme – 20 coins</li>
+        <li>🌈 Retro Theme – 20 coins</li>
+      </ul>
+      <p style="margin-top:6px;font-size:0.76rem;opacity:0.85;">Current balance: <span id="shopCoinText">0</span> coins</p>
+      <div class="mini-actions">
+        <button id="shopCloseBtn" class="btn btn-secondary profile-inline-btn">Close</button>
+        <button id="shopNeonBtn" class="btn btn-primary profile-inline-btn">Neon</button>
+        <button id="shopBgmiBtn" class="btn btn-primary profile-inline-btn">BGMI</button>
+        <button id="shopRetroBtn" class="btn btn-primary profile-inline-btn">Retro</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🧑‍🎨 Avatar picker popup -->
+  <div id="avatarOverlay" class="overlay-center">
+    <div class="mini-card">
+      <h3>Choose Avatar</h3>
+      <p>Apne DSR Gamer Profile ke liye ek chhota icon select karo. Ye naam ke aage show hoga.</p>
+      <div class="avatar-choice-row">
+        <button class="avatar-choice-btn" data-avatar="🔥"><span>🔥</span><span>Pro</span></button>
+        <button class="avatar-choice-btn" data-avatar="👑"><span>👑</span><span>King</span></button>
+        <button class="avatar-choice-btn" data-avatar="⚡"><span>⚡</span><span>Speed</span></button>
+        <button class="avatar-choice-btn" data-avatar="🎯"><span>🎯</span><span>Aim</span></button>
+        <button class="avatar-choice-btn" data-avatar="🐱"><span>🐱</span><span>Oggy</span></button>
+        <button class="avatar-choice-btn" data-avatar="⭐"><span>⭐</span><span>Star</span></button>
+      </div>
+      <div class="mini-actions">
+        <button id="avatarClearBtn" class="btn btn-secondary profile-inline-btn">Remove Avatar</button>
+        <button id="avatarCloseBtn" class="btn btn-primary profile-inline-btn">Close</button>
+      </div>
+      <p style="font-size:0.72rem;opacity:0.8;margin-top:4px;">
+        Avatar selection sirf isi device pe local rahega (offline safe).
+      </p>
+    </div>
+  </div>
+
+
+  <!-- Confetti -->
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+  <script>
+  // Splash hide
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      const s = document.getElementById("splash");
+      if (s) s.classList.add("hide");
+    }, 800);
+  });
+
+  const firebaseStatusText = document.getElementById("firebaseStatusText");
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyC6s9DnovBeUvLwyATA67uO38-x1V5F8RQ",
+    authDomain: "dsr-tor.firebaseapp.com",
+    projectId: "dsr-tor",
+    storageBucket: "dsr-tor.firebasestorage.app",
+    messagingSenderId: "387312795674",
+    appId: "1:387312795674:web:a6f15ea6f28b7cf09f11a3",
+    measurementId: "G-1B2QHD6S96"
+  };
+
+  let db = null;
+  try {
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+    firebaseStatusText.textContent = "Connected ✅";
+  } catch (err) {
+    console.error("Firebase init error:", err);
+    firebaseStatusText.textContent = "Init error";
+  }
+
+  const homeScreen   = document.getElementById("homeScreen");
+  const gameScreen   = document.getElementById("gameScreen");
+  const coinScreen   = document.getElementById("coinScreen");
+
+  const startVsAI    = document.getElementById("startVsAI");
+  const startVsPlayer= document.getElementById("startVsPlayer");
+  const startOnline  = document.getElementById("startOnline");
+  const spectateBtn  = document.getElementById("spectateBtn");
+  const startLuckyMode = document.getElementById("startLuckyMode");
+  const startCompetitiveMode = document.getElementById("startCompetitiveMode");
+  const player1Input = document.getElementById("player1Name");
+  const player2Input = document.getElementById("player2Name");
+
+  const statusText   = document.getElementById("statusText");
+  const restartBtn   = document.getElementById("restartBtn");
+  const newGameBtn   = document.getElementById("newGameBtn");
+  const homeBtn      = document.getElementById("homeBtn");
+
+  const scoreXEl     = document.getElementById("scoreX");
+  const scoreOEl     = document.getElementById("scoreO");
+  const scoreDrawsEl = document.getElementById("scoreDraws");
+
+  const settingsBtn  = document.getElementById("settingsBtn");
+  const settingsMenu = document.getElementById("settingsMenu");
+  const soundToggle  = document.getElementById("soundToggle");
+  const aiToggle     = document.getElementById("aiToggle");
+  const darkToggle   = document.getElementById("darkToggle");
+  const aiDifficultySelect = document.getElementById("aiDifficulty");
+  const modeText     = document.getElementById("modeText");
+  const themeButtons = document.querySelectorAll(".theme-btn");
+
+  const playerXLabel = document.getElementById("playerXLabel");
+  const playerOLabel = document.getElementById("playerOLabel");
+
+  const gameContainer = document.getElementById("gameScreen");
+  const winOverlay    = document.getElementById("winOverlay");
+
+  const onlineInfoBar        = document.getElementById("onlineInfoBar");
+  const roomCodeText         = document.getElementById("roomCodeText");
+  const connectionStatusText = document.getElementById("connectionStatusText");
+
+  const historyList      = document.getElementById("historyList");
+  const clearHistoryBtn  = document.getElementById("clearHistoryBtn");
+
+  const leaderboardList         = document.getElementById("leaderboardList");
+  const refreshLeaderboardBtn   = document.getElementById("refreshLeaderboardBtn");
+
+  const chatMessages    = document.getElementById("chatMessages");
+  const chatInput       = document.getElementById("chatInput");
+  const chatSendBtn     = document.getElementById("chatSendBtn");
+  const chatHintText    = document.getElementById("chatHintText");
+
+  const avatarXEl = document.getElementById("avatarX");
+  const avatarOEl = document.getElementById("avatarO");
+
+  const profilePlayerNameEl = document.getElementById("profilePlayerName");
+  const xpLevelEl      = document.getElementById("xpLevel");
+  const xpBarFill      = document.getElementById("xpBarFill");
+  const xpTextEl       = document.getElementById("xpText");
+  const xpStatsWinsEl  = document.getElementById("xpStatsWins");
+  const xpStatsLossesEl= document.getElementById("xpStatsLosses");
+  const xpStatsDrawsEl = document.getElementById("xpStatsDraws");
+
+  const coinCountHome = document.getElementById("coinCountHome");
+  const coinCountGame = document.getElementById("coinCountGame");
+  const coinCountWallet = document.getElementById("coinCountWallet");
+
+  const walletRupeesText = document.getElementById("walletRupeesText");
+  const walletProgressFill = document.getElementById("walletProgressFill");
+  const walletProgressPercent = document.getElementById("walletProgressPercent");
+  const walletProgressLabel = document.getElementById("walletProgressLabel");
+
+  const withdrawAmountInput = document.getElementById("withdrawAmount");
+  const upiIdInput = document.getElementById("upiId");
+  const paytmNoInput = document.getElementById("paytmNo");
+  const bankLast4Input = document.getElementById("bankLast4");
+
+  const upiRow = document.getElementById("upiRow");
+  const paytmRow = document.getElementById("paytmRow");
+  const bankRow = document.getElementById("bankRow");
+
+  const methodUpiBtn = document.getElementById("methodUpiBtn");
+  const methodPaytmBtn = document.getElementById("methodPaytmBtn");
+  const methodBankBtn = document.getElementById("methodBankBtn");
+
+  const boardEl = document.getElementById("board");
+
+  const profileGreetingEl = document.getElementById("profileGreeting");
+  const profileTagEl = document.getElementById("profileTag");
+  const profileBtn = document.getElementById("profileBtn");
+  const profileOverlay = document.getElementById("profileOverlay");
+  const profileNameInput = document.getElementById("profileNameInput");
+  const profileCancelBtn = document.getElementById("profileCancelBtn");
+  const profileSaveBtn = document.getElementById("profileSaveBtn");
+  const fbConnectBtn = document.getElementById("fbConnectBtn");
+
+  const moreBtn = document.getElementById("moreBtn");
+  const moreMenu = document.getElementById("moreMenu");
+  const menuSettingsBtn = document.getElementById("menuSettingsBtn");
+  const menuUltraBtn = document.getElementById("menuUltraBtn");
+
+  const coinBarHome = document.getElementById("coinBarHome");
+  const coinBarGame = document.getElementById("coinBarGame");
+  const withdrawBtn = document.getElementById("withdrawBtn");
+  const coinBackBtn = document.getElementById("coinBackBtn");
+
+  const redeemPopup = document.getElementById("redeemPopup");
+  const redeemPopupClose = document.getElementById("redeemPopupClose");
+
+  // ⭐ More Games buttons
+  const moreGamesBtnHome = document.getElementById("moreGamesBtnHome");
+  const moreGamesBtnGame = document.getElementById("moreGamesBtnGame");
+  const moreGamesBtnCoin = document.getElementById("moreGamesBtnCoin");
+
+  const optLeaderboardBtn = document.getElementById("optLeaderboard");
+  const optAvatarBtn = document.getElementById("optAvatar");
+  const optDailyShopBtn = document.getElementById("optDailyShop");
+  const optAIUpgradeBtn = document.getElementById("optAI");
+  const optOnlineProBtn = document.getElementById("optOnlinePro");
+
+  const rewardOverlay = document.getElementById("rewardOverlay");
+  const rewardClaimBtn = document.getElementById("rewardClaimBtn");
+  const rewardCloseBtn = document.getElementById("rewardCloseBtn");
+  const rewardStatusText = document.getElementById("rewardStatusText");
+
+  const shopOverlay = document.getElementById("shopOverlay");
+  const shopCloseBtn = document.getElementById("shopCloseBtn");
+  const shopNeonBtn = document.getElementById("shopNeonBtn");
+  const shopBgmiBtn = document.getElementById("shopBgmiBtn");
+  const shopRetroBtn = document.getElementById("shopRetroBtn");
+  const shopCoinText = document.getElementById("shopCoinText");
+
+  const avatarOverlay = document.getElementById("avatarOverlay");
+  const avatarCloseBtn = document.getElementById("avatarCloseBtn");
+  const avatarClearBtn = document.getElementById("avatarClearBtn");
+  const avatarChoiceButtons = document.querySelectorAll(".avatar-choice-btn");
+
+  // Game Store elements
+
+  // 🎯 DSR Upgrades: full feature logic (daily reward, shop, avatar, AI, online)
+
+  function getTodayStringForReward() {
+    const today = new Date();
+    const y = today.getFullYear();
+    const m = String(today.getMonth() + 1).padStart(2, "0");
+    const d = String(today.getDate()).padStart(2, "0");
+    return y + "-" + m + "-" + d;
+  }
+
+  function openRewardOverlay() {
+    if (!rewardOverlay) return;
+    let msg = "";
+    try {
+      const todayStr = getTodayStringForReward();
+      const last = localStorage.getItem(DAILY_REWARD_KEY);
+      if (last === todayStr) {
+        msg = "Aaj ka reward already claim ho chuka hai. Kal wapas aana. ✨";
+      } else {
+        msg = "Aaj ka reward available hai! Claim Now dabao.";
+      }
+    } catch (e) {
+      msg = "Reward status check nahi ho paaya, phir bhi try kar sakte ho.";
+    }
+    if (rewardStatusText) rewardStatusText.textContent = msg;
+    rewardOverlay.classList.add("show");
+  }
+
+  function claimDailyReward() {
+    try {
+      const todayStr = getTodayStringForReward();
+      const last = localStorage.getItem(DAILY_REWARD_KEY);
+      if (last === todayStr) {
+        alert("Aaj ka reward already claim ho chuka hai. Kal wapas aana. 💫");
+        return;
+      }
+      const rewardCoins = 20;
+      coins += rewardCoins;
+      saveCoins();
+      updateCoinUI();
+      localStorage.setItem(DAILY_REWARD_KEY, todayStr);
+      if (rewardStatusText) {
+        rewardStatusText.textContent = "Congrats! +" + rewardCoins + " coins add ho gaye. 💰";
+      }
+    } catch (e) {
+      alert("Reward claim karne me error aaya, app reload karke phir try karo.");
+    }
+  }
+
+  function openShopOverlay() {
+    if (!shopOverlay) return;
+    if (shopCoinText) shopCoinText.textContent = String(coins);
+    shopOverlay.classList.add("show");
+  }
+
+  function tryBuyTheme(themeName) {
+    const COST = 20;
+    if (coins < COST) {
+      alert("Is theme ke liye minimum " + COST + " coins chahiye. Tumhare paas abhi " + coins + " coins hain.");
+      return;
+    }
+    coins -= COST;
+    saveCoins();
+    updateCoinUI();
+    if (themeName === "neon") applyTheme("neon");
+    else if (themeName === "bgmi") applyTheme("bgmi");
+    else if (themeName === "retro") applyTheme("retro");
+    alert("Theme '" + themeName + "' unlock ho gayi! 🎨");
+  }
+
+  // Reward overlay buttons
+  if (rewardClaimBtn) {
+    rewardClaimBtn.addEventListener("click", claimDailyReward);
+  }
+  if (rewardCloseBtn && rewardOverlay) {
+    rewardCloseBtn.addEventListener("click", () => {
+      rewardOverlay.classList.remove("show");
+    });
+  }
+  if (rewardOverlay) {
+    rewardOverlay.addEventListener("click", (e) => {
+      if (e.target === rewardOverlay) rewardOverlay.classList.remove("show");
+    });
+  }
+
+  // Shop overlay buttons
+  if (shopCloseBtn && shopOverlay) {
+    shopCloseBtn.addEventListener("click", () => {
+      shopOverlay.classList.remove("show");
+    });
+  }
+  if (shopOverlay) {
+    shopOverlay.addEventListener("click", (e) => {
+      if (e.target === shopOverlay) shopOverlay.classList.remove("show");
+    });
+  }
+  if (shopNeonBtn) {
+    shopNeonBtn.addEventListener("click", () => tryBuyTheme("neon"));
+  }
+  if (shopBgmiBtn) {
+    shopBgmiBtn.addEventListener("click", () => tryBuyTheme("bgmi"));
+  }
+  if (shopRetroBtn) {
+    shopRetroBtn.addEventListener("click", () => tryBuyTheme("retro"));
+  }
+
+  // Avatar picker logic
+  function openAvatarOverlay() {
+    if (!avatarOverlay) return;
+    avatarOverlay.classList.add("show");
+  }
+
+  if (avatarCloseBtn && avatarOverlay) {
+    avatarCloseBtn.addEventListener("click", () => {
+      avatarOverlay.classList.remove("show");
+    });
+  }
+  if (avatarClearBtn) {
+    avatarClearBtn.addEventListener("click", () => {
+      currentAvatar = "";
+      saveAvatar("");
+      updateProfileUI();
+      updateAvatarUI();
+    });
+  }
+  if (avatarOverlay) {
+    avatarOverlay.addEventListener("click", (e) => {
+      if (e.target === avatarOverlay) avatarOverlay.classList.remove("show");
+    });
+  }
+  if (avatarChoiceButtons && avatarChoiceButtons.length) {
+    avatarChoiceButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const icon = btn.getAttribute("data-avatar") || "";
+        currentAvatar = icon;
+        saveAvatar(icon);
+        updateProfileUI();
+        updateAvatarUI();
+      });
+    });
+  }
+
+  // Wire DSR Upgrade buttons
+  function wireDsrUpgradeButtons() {
+    const optLeaderboard = optLeaderboardBtn;
+    const optAvatar = optAvatarBtn;
+    const optDailyShop = optDailyShopBtn;
+    const optAI = optAIUpgradeBtn;
+    const optOnlinePro = optOnlineProBtn;
+
+    if (optLeaderboard && leaderboardList) {
+      optLeaderboard.addEventListener("click", () => {
+        leaderboardList.scrollIntoView({ behavior: "smooth", block: "center" });
+        const parent = leaderboardList.parentElement;
+        if (parent) {
+          const oldShadow = parent.style.boxShadow;
+          parent.style.boxShadow = "0 0 18px rgba(250,204,21,0.8)";
+          setTimeout(() => {
+            parent.style.boxShadow = oldShadow || "";
+          }, 1200);
+        }
+      });
+    }
+
+    if (optAvatar) {
+      optAvatar.addEventListener("click", () => {
+        openAvatarOverlay();
+      });
+    }
+
+    if (optDailyShop) {
+      optDailyShop.addEventListener("click", () => {
+        openRewardOverlay();
+      });
+    }
+
+    if (optAI && aiDifficultySelect) {
+      optAI.addEventListener("click", () => {
+        let hasImpossible = false;
+        for (let i = 0; i < aiDifficultySelect.options.length; i++) {
+          if (aiDifficultySelect.options[i].value === "impossible") {
+            hasImpossible = true;
+            break;
+          }
+        }
+        if (!hasImpossible) {
+          const opt = document.createElement("option");
+          opt.value = "impossible";
+          opt.textContent = "Impossible";
+          aiDifficultySelect.appendChild(opt);
+        }
+        aiDifficultySelect.value = "impossible";
+        aiDifficulty = "impossible";
+        alert("AI difficulty 'Impossible' select ho gaya. 😈");
+      });
+    }
+
+    if (optOnlinePro && startOnline) {
+      optOnlinePro.addEventListener("click", () => {
+        startOnline.click();
+      });
+    }
+  }
+
+  wireDsrUpgradeButtons();
+
+  // Game Store elements
+  const gamesOverlay = document.getElementById("gamesOverlay");
+  const gamesCloseBtn = document.getElementById("gamesCloseBtn");
+  const openThisGameBtn = document.getElementById("openThisGameBtn");
+
+  const gameItems = document.querySelectorAll(".game-item");
+  const gameDetailTitle = document.getElementById("gameDetailTitle");
+  const gameDetailSub = document.getElementById("gameDetailSub");
+  const gameDetailPills = document.getElementById("gameDetailPills");
+  const gameDetailDesc = document.getElementById("gameDetailDesc");
+
+  const MIN_WITHDRAW_COINS = 100;
+  const COIN_TO_RUPEE_RATE = 0.1; // 10 coins = ₹1 demo
+  let currentMethod = "upi";
+
+  const USERNAME_KEY = "dsrToeUserNameV1";
+  let currentUserName = null;
+
+  const AVATAR_KEY = "dsrToeAvatarV1";
+  let currentAvatar = "";
+
+  const DAILY_REWARD_KEY = "dsrToeDailyRewardDateV1";
+
+  const FB_CONNECTED_KEY = "dsrToeFbConnectedV1";
+  let fbConnected = false;
+
+  // GAME STATE
+  let boardSize = 3;               // 3x3 normal, 4x4 competitive, 5x5 ultra
+  let board = [];
+  let cells = [];
+  let winningPatterns = [];
+
+  let currentPlayer = "X";
+  let isGameActive  = true;
+
+  let scoreX = 0;
+  let scoreO = 0;
+  let scoreDraws = 0;
+
+  let soundEnabled = true;
+  let vsAI = true;
+  let aiDifficulty = "hard";
+
+  let onlineMode = false;
+  let roomCode = null;
+  let isMyTurn = true;
+  let unsubscribeRoomFn = null;
+  let isSpectator = false;
+
+  let competitiveMode = false;    // 4x4
+  let ultraMode = false;          // 5x5
+  let luckyMode = false;
+
+  let playerXName = "Player X";
+  let playerOName = "Player O";
+
+  let currentTheme = "default";
+  let matchCount = 0;
+
+  let chatData = [];
+  let myDisplayName = "You";
+
+  // ⭐ NEW FLAGS
+  let aiThinking = false;   // AI turn me board locked
+  let mySymbol   = "X";     // Online: host = X, joiner = O
+
+  // Coin + XP system
+  const COIN_KEY = "dsrToeCoinsV1";
+  const COINS_PER_WIN = 10;
+  const COINS_PER_DRAW = 5;
+
+  const XP_PER_WIN = 15;
+  const XP_PER_DRAW = 5;
+  let coins = 0;
+  let xpTotal = 0;
+
+  // Track last screen before coin page
+  let lastScreen = "home";
+
+  // Sounds
+  const beepSound = new Audio("https://www.soundjay.com/buttons/sounds/beep-07.mp3");
+  beepSound.preload = "auto";
+
+  const winSound = new Audio("https://www.soundjay.com/human/sounds/applause-01.mp3");
+  winSound.preload = "auto";
+
+  function playBeep() {
+    if (!soundEnabled) return;
+    beepSound.currentTime = 0;
+    beepSound.play().catch(() => {});
+  }
+
+  function playWinSound() {
+    if (!soundEnabled) return;
+    winSound.currentTime = 0;
+    winSound.play().catch(() => {});
+  }
+
+  function updateCoinUI() {
+    if (coinCountHome) coinCountHome.textContent = coins;
+    if (coinCountGame) coinCountGame.textContent = coins;
+    if (coinCountWallet) coinCountWallet.textContent = coins;
+
+    if (walletRupeesText) {
+      walletRupeesText.textContent = (coins * COIN_TO_RUPEE_RATE).toFixed(1);
+    }
+    if (walletProgressFill && walletProgressPercent && walletProgressLabel) {
+      const pct = Math.max(0, Math.min(100, (coins / MIN_WITHDRAW_COINS) * 100));
+      walletProgressFill.style.width = pct + "%";
+      walletProgressPercent.textContent = Math.round(pct) + "%";
+
+      if (coins < MIN_WITHDRAW_COINS) {
+        walletProgressLabel.textContent =
+          `Need ${MIN_WITHDRAW_COINS - coins} more coins to unlock withdraw`;
+      } else {
+        walletProgressLabel.textContent = "Withdraw unlocked — you can cash out demo coins!";
+      }
+    }
+  }
+
+  function loadCoins() {
+    try {
+      const stored = localStorage.getItem(COIN_KEY);
+      const num = parseInt(stored, 10);
+      coins = isNaN(num) ? 0 : num;
+    } catch (e) {
+      coins = 0;
+    }
+    updateCoinUI();
+  }
+
+  function saveCoins() {
+    try {
+      localStorage.setItem(COIN_KEY, String(coins));
+    } catch (e) {
+      console.warn("Coin save error", e);
+    }
+  }
+
+  function updateProfileUI() {
+    if (!profileGreetingEl || !profileTagEl || !profileBtn) return;
+    const nameText = currentUserName || "DSR Gamer Profile";
+    const avatarPrefix = currentAvatar ? (currentAvatar + " ") : "";
+    if (!currentUserName) {
+      profileGreetingEl.textContent = nameText;
+      profileTagEl.textContent = "Not logged in";
+      profileBtn.textContent = "Login / Sign up";
+    } else {
+      profileGreetingEl.textContent = avatarPrefix + nameText;
+      let tag = coins + " coins • " + (xpTotal || 0) + " XP";
+      if (fbConnected) tag += " • Facebook linked";
+      profileTagEl.textContent = tag;
+      profileBtn.textContent = "Switch Player";
+    }
+  }
+
+  function loadUserName() {
+    try {
+      const stored = localStorage.getItem(USERNAME_KEY);
+      if (stored) {
+        currentUserName = stored;
+        if (player1Input && !player1Input.value.trim()) {
+          player1Input.value = currentUserName;
+        }
+        if (profilePlayerNameEl) {
+          profilePlayerNameEl.textContent = currentUserName;
+        }
+      }
+    } catch (e) {
+      console.warn("Username load error", e);
+    }
+    updateProfileUI();
+  }
+
+  function saveUserName(name) {
+    try {
+      localStorage.setItem(USERNAME_KEY, name);
+    } catch (e) {
+      console.warn("Username save error", e);
+    }
+  }
+
+  function setCurrentUserName(name) {
+    currentUserName = name;
+    saveUserName(name);
+    if (player1Input && !player1Input.value.trim()) {
+      player1Input.value = currentUserName;
+    }
+    if (profilePlayerNameEl) {
+      profilePlayerNameEl.textContent = currentUserName;
+    }
+    updateProfileUI();
+  }
+
+  function loadAvatar() {
+    try {
+      const stored = localStorage.getItem(AVATAR_KEY);
+      if (stored) {
+        currentAvatar = stored;
+      }
+    } catch (e) {
+      console.warn("Avatar load error", e);
+    }
+    updateProfileUI();
+    updateAvatarUI();
+  }
+
+  function saveAvatar(avatar) {
+    try {
+      if (!avatar) {
+        localStorage.removeItem(AVATAR_KEY);
+      } else {
+        localStorage.setItem(AVATAR_KEY, avatar);
+      }
+    } catch (e) {
+      console.warn("Avatar save error", e);
+    }
+  }
+
+  function loadFbConnected() {
+    try {
+      const stored = localStorage.getItem(FB_CONNECTED_KEY);
+      fbConnected = stored === "1";
+    } catch (e) {
+      fbConnected = false;
+    }
+    updateProfileUI();
+  }
+
+  function saveFbConnected(value) {
+    fbConnected = !!value;
+    try {
+      if (fbConnected) localStorage.setItem(FB_CONNECTED_KEY, "1");
+      else localStorage.removeItem(FB_CONNECTED_KEY);
+    } catch (e) {}
+    updateProfileUI();
+  }
+
+  loadCoins();
+  loadUserName();
+  loadAvatar();
+  loadFbConnected();
+
+  // XP UI
+  function calcLevel(xp) {
+    const level = Math.floor(xp / 100) + 1;
+    const into = xp % 100;
+    const percent = Math.min(100, Math.round(into));
+    return { level, into, percent };
+  }
+
+  function updateXPUI() {
+    if (!xpLevelEl || !xpBarFill || !xpTextEl) return;
+    const { level, into, percent } = calcLevel(xpTotal);
+    xpLevelEl.textContent = level;
+    xpTextEl.textContent = into + " / 100 XP";
+
+    requestAnimationFrame(() => {
+      xpBarFill.style.width = percent + "%";
+    });
+
+    if (xpStatsWinsEl) xpStatsWinsEl.textContent = scoreX;
+    if (xpStatsLossesEl) xpStatsLossesEl.textContent = scoreO;
+    if (xpStatsDrawsEl) xpStatsDrawsEl.textContent = scoreDraws;
+  }
+
+  function applyTheme(theme) {
+    document.body.classList.remove("theme-bgmi", "theme-neon", "theme-retro");
+    if (theme === "bgmi") document.body.classList.add("theme-bgmi");
+    else if (theme === "neon") document.body.classList.add("theme-neon");
+    else if (theme === "retro") document.body.classList.add("theme-retro");
+    currentTheme = theme;
+
+    themeButtons.forEach(btn => {
+      if (btn.getAttribute("data-theme") === theme) btn.classList.add("active");
+      else btn.classList.remove("active");
+    });
+  }
+
+  themeButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const t = btn.getAttribute("data-theme");
+      applyTheme(t);
+    });
+  });
+
+  applyTheme("default");
+  updateXPUI();
+
+  function fireConfetti() {
+    if (typeof confetti === "undefined") return;
+    const duration = 1200;
+    const end = Date.now() + duration;
+
+    (function frame() {
+      confetti({
+        particleCount: 30,
+        spread: 60,
+        startVelocity: 45,
+        scalar: 0.9,
+        ticks: 120,
+        origin: { x: Math.random(), y: 0.3 }
+      });
+      if (Date.now() < end) requestAnimationFrame(frame);
+    })();
+  }
+
+  function showOverlay(message, winnerName, isDraw) {
+    if (isDraw) {
+      winOverlay.innerHTML = `
+        <div class="victory-card">
+          <div class="victory-header">
+            <div class="victory-logo">
+              <img src="dsr-logo.png" alt="DSR Logo" />
+            </div>
+            <div class="victory-brand">
+              <span>Powered by</span>
+              <span>DSR OGGY LTD</span>
+            </div>
+          </div>
+          <div class="victory-title">Match Draw 🤝</div>
+          <div class="victory-sub">${message}</div>
+          <div class="victory-footer">
+            Next round me <span>full try</span> karo! 🔁
+          </div>
+        </div>
+      `;
+    } else {
+      winOverlay.innerHTML = `
+        <div class="victory-card">
+          <div class="victory-header">
+            <div class="victory-logo">
+              <img src="dsr-logo.png" alt="DSR Logo" />
+            </div>
+            <div class="victory-brand">
+              <span>Champion Of</span>
+              <span>DSR OGGY LTD ARENA</span>
+            </div>
+          </div>
+          <div class="victory-title">Victory Royale 🏆</div>
+          <div class="victory-player">${winnerName}</div>
+          <div class="victory-badge">
+            <span>🔥</span>
+            <span>${message}</span>
+          </div>
+          <div class="victory-footer">
+            Designed by <span>DSR OGGY LTD</span> · Tap Restart for next battle
+          </div>
+        </div>
+      `;
+    }
+
+    winOverlay.classList.add("show");
+    gameContainer.classList.add("shake");
+
+    setTimeout(() => {
+      winOverlay.classList.remove("show");
+      gameContainer.classList.remove("shake");
+    }, 2000);
+  }
+
+  function addHistoryEntry(text) {
+    const li = document.createElement("li");
+    li.className = "history-item";
+    li.textContent = text;
+    historyList.prepend(li);
+    while (historyList.children.length > 10) {
+      historyList.removeChild(historyList.lastChild);
+    }
+  }
+
+  function updateAvatarUI() {
+    if (!avatarXEl || !avatarOEl) return;
+
+    const avatarPrefix = currentAvatar ? (currentAvatar + " ") : "";
+    const xLabel = avatarPrefix + "❌ " + playerXName;
+    const oLabel = "⭕ " + playerOName;
+
+    avatarXEl.textContent = xLabel;
+    avatarOEl.textContent = oLabel;
+
+    avatarXEl.classList.toggle("active", currentPlayer === "X");
+    avatarOEl.classList.toggle("active", currentPlayer === "O");
+  }
+
+  clearHistoryBtn.addEventListener("click", () => {
+    historyList.innerHTML = "";
+    matchCount = 0;
+    scoreX = scoreO = scoreDraws = 0;
+    scoreXEl.textContent = "0";
+    scoreOEl.textContent = "0";
+    scoreDrawsEl.textContent = "0";
+    xpTotal = 0;
+    updateXPUI();
+  });
+
+  async function loadLeaderboard() {
+    if (!db) return;
+    try {
+      const snap = await db.collection("leaderboard").get();
+      const items = [];
+      snap.forEach(doc => items.push(doc.data()));
+      items.sort((a, b) => {
+        const wa = a.wins || 0, wb = b.wins || 0;
+        const da = a.draws || 0, dbv = b.draws || 0;
+        const ma = a.matches || 0, mb = b.matches || 0;
+        return wb - wa || dbv - da || mb - ma;
+      });
+      leaderboardList.innerHTML = "";
+      items.slice(0, 5).forEach((p, idx) => {
+        const li = document.createElement("li");
+        li.className = "history-item";
+        li.textContent =
+          (idx + 1) + ". " + p.name +
+          " — W" + (p.wins || 0) +
+          " L" + (p.losses || 0) +
+          " D" + (p.draws || 0);
+        leaderboardList.appendChild(li);
+      });
+    } catch (e) {
+      console.error("Leaderboard load error", e);
+    }
+  }
+
+  async function updateLeaderboard(nameA, nameB, isDraw) {
+    if (!db) return;
+    const col = db.collection("leaderboard");
+    const inc = firebase.firestore.FieldValue.increment;
+    const batch = db.batch();
+
+    if (isDraw) {
+      [nameA, nameB].forEach(name => {
+        const ref = col.doc(name);
+        batch.set(ref, {
+          name,
+          wins: inc(0),
+          losses: inc(0),
+          draws: inc(1),
+          matches: inc(1),
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        }, { merge: true });
+      });
+    } else {
+      const winner = nameA;
+      const loser  = nameB;
+      const wRef = col.doc(winner);
+      const lRef = col.doc(loser);
+      batch.set(wRef, {
+        name: winner,
+        wins: inc(1),
+        losses: inc(0),
+        draws: inc(0),
+        matches: inc(1),
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      }, { merge: true });
+      batch.set(lRef, {
+        name: loser,
+        wins: inc(0),
+        losses: inc(1),
+        draws: inc(0),
+        matches: inc(1),
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      }, { merge: true });
+    }
+
+    try {
+      await batch.commit();
+      loadLeaderboard();
+    } catch (e) {
+      console.error("Leaderboard update error", e);
+    }
+  }
+
+  if (db) {
+    loadLeaderboard();
+  }
+  refreshLeaderboardBtn.addEventListener("click", loadLeaderboard);
+
+  function renderChat(list) {
+    chatMessages.innerHTML = "";
+    list.forEach(msg => {
+      const div = document.createElement("div");
+      div.className = "chat-message";
+      const s = document.createElement("span");
+      s.className = "chat-sender";
+      s.textContent = msg.sender + ": ";
+      const t = document.createElement("span");
+      t.textContent = msg.text;
+      div.appendChild(s);
+      div.appendChild(t);
+      chatMessages.appendChild(div);
+    });
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function sendChatMessage() {
+    if (!onlineMode || !roomCode || !db) {
+      chatInput.value = "";
+      return;
+    }
+    const text = chatInput.value.trim();
+    if (!text) return;
+    const msg = {
+      sender: myDisplayName,
+      text,
+      ts: Date.now()
+    };
+    const newChat = (chatData || []).slice(-29);
+    newChat.push(msg);
+    chatData = newChat;
+    db.collection("rooms").doc(roomCode).update({
+      chat: newChat,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(err => {
+      console.error("Chat send error", err);
+    });
+    chatInput.value = "";
+  }
+
+  chatSendBtn.addEventListener("click", sendChatMessage);
+  chatInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") sendChatMessage();
+  });
+
+  // Winning patterns for variable board
+  function computeWinningPatterns() {
+    winningPatterns = [];
+    const n = boardSize;
+    const K = Math.min(3, n); // 3 in a row
+
+    // Horizontal
+    for (let r = 0; r < n; r++) {
+      for (let c = 0; c <= n - K; c++) {
+        const pattern = [];
+        for (let i = 0; i < K; i++) {
+          pattern.push(r * n + (c + i));
+        }
+        winningPatterns.push(pattern);
+      }
+    }
+
+    // Vertical
+    for (let c = 0; c < n; c++) {
+      for (let r = 0; r <= n - K; r++) {
+        const pattern = [];
+        for (let i = 0; i < K; i++) {
+          pattern.push((r + i) * n + c);
+        }
+        winningPatterns.push(pattern);
+      }
+    }
+
+    // Diagonal (down-right)
+    for (let r = 0; r <= n - K; r++) {
+      for (let c = 0; c <= n - K; c++) {
+        const pattern = [];
+        for (let i = 0; i < K; i++) {
+          pattern.push((r + i) * n + (c + i));
+        }
+        winningPatterns.push(pattern);
+      }
+    }
+
+    // Diagonal (down-left)
+    for (let r = 0; r <= n - K; r++) {
+      for (let c = K - 1; c < n; c++) {
+        const pattern = [];
+        for (let i = 0; i < K; i++) {
+          pattern.push((r + i) * n + (c - i));
+        }
+        winningPatterns.push(pattern);
+      }
+    }
+  }
+
+  // Dynamic board builder
+  function buildBoard() {
+    boardEl.innerHTML = "";
+    board = new Array(boardSize * boardSize).fill("");
+    for (let i = 0; i < board.length; i++) {
+      const cell = document.createElement("button");
+      cell.className = "cell";
+      cell.setAttribute("data-index", i);
+      cell.addEventListener("click", handleCellClick);
+      boardEl.appendChild(cell);
+    }
+    cells = boardEl.querySelectorAll(".cell");
+    boardEl.style.gridTemplateColumns = `repeat(${boardSize}, 1fr)`;
+    if (boardSize > 3) {
+      boardEl.classList.add("compact");
+    } else {
+      boardEl.classList.remove("compact");
+    }
+    computeWinningPatterns();
+  }
+
+  function getResult() {
+    let winner = null;
+    let winCombo = null;
+
+    for (const pattern of winningPatterns) {
+      const first = pattern[0];
+      if (!board[first]) continue;
+      const symbol = board[first];
+      if (pattern.every(idx => board[idx] === symbol)) {
+        winner = symbol;
+        winCombo = pattern;
+        break;
+      }
+    }
+
+    if (winner) return { status: "win", winner, winCombo };
+    if (!board.includes("")) return { status: "draw" };
+    return { status: "continue" };
+  }
+
+  function makeMoveLocal(index) {
+    board[index] = currentPlayer;
+    const cell = boardEl.querySelector('.cell[data-index="' + index + '"]');
+    if (!cell) return;
+    cell.textContent = currentPlayer;
+    cell.classList.add(currentPlayer);
+    playBeep();
+  }
+
+  function highlightWin(combo) {
+    combo.forEach(i => {
+      const cell = boardEl.querySelector('.cell[data-index="' + i + '"]');
+      if (cell) cell.classList.add("win");
+    });
+  }
+
+  // ⭐ FIXED: applyResult with fromRemote + online & XP logic
+  function applyResult(result, fromRemote = false) {
+    updateAvatarUI();
+
+    if (result.status === "win") {
+      isGameActive = false;
+
+      if (result.winner === "X") {
+        scoreX++;
+        scoreXEl.textContent = scoreX;
+      } else {
+        scoreO++;
+        scoreOEl.textContent = scoreO;
+      }
+
+      highlightWin(result.winCombo);
+      const winnerName = result.winner === "X" ? playerXName : playerOName;
+      const loserName  = result.winner === "X" ? playerOName : playerXName;
+      const loserSymbol= result.winner === "X" ? "O" : "X";
+
+      statusText.textContent = winnerName + " wins! 🎉";
+
+      matchCount++;
+      addHistoryEntry(
+        "#" + matchCount + " – " +
+        winnerName + " (" + result.winner + ") beat " +
+        loserName + " (" + loserSymbol + ")"
+      );
+
+      // XP + coins only once per device, and not for spectator
+      if (!isSpectator && (!onlineMode || !fromRemote)) {
+        coins += COINS_PER_WIN;
+        saveCoins();
+        xpTotal += XP_PER_WIN;
+        updateCoinUI();
+        updateXPUI();
+        if (db) updateLeaderboard(winnerName, loserName, false);
+      }
+
+      playWinSound();
+      const modeTag = ultraMode ? "Ultra" : (competitiveMode ? "Pro" : "DSR Champion");
+      showOverlay(`${modeTag}! +${isSpectator ? 0 : COINS_PER_WIN} Coins`, winnerName, false);
+      fireConfetti();
+      return;
+    }
+
+    if (result.status === "draw") {
+      isGameActive = false;
+      scoreDraws++;
+      scoreDrawsEl.textContent = scoreDraws;
+      statusText.textContent = "It's a draw! 🤝";
+
+      matchCount++;
+      addHistoryEntry(
+        "#" + matchCount + " – Draw between " +
+        playerXName + " (X) & " + playerOName + " (O)"
+      );
+
+      if (!isSpectator && (!onlineMode || !fromRemote)) {
+        coins += COINS_PER_DRAW;
+        saveCoins();
+        xpTotal += XP_PER_DRAW;
+        updateCoinUI();
+        updateXPUI();
+        if (db) updateLeaderboard(playerXName, playerOName, true);
+      }
+
+      playWinSound();
+      showOverlay(`Both played well! +${isSpectator ? 0 : COINS_PER_DRAW} Coins`, null, true);
+      return;
+    }
+
+    // Game continues
+    if (!fromRemote) {
+      currentPlayer = currentPlayer === "X" ? "O" : "X";
+    }
+    updateAvatarUI();
+    updateXPUI();
+
+    if (onlineMode) {
+      // ⭐ FIX: each device decides its turn based on mySymbol
+      if (!isSpectator) {
+        isMyTurn = (currentPlayer === mySymbol);
+      }
+      statusText.textContent = isSpectator
+        ? "Spectating… Current: " + currentPlayer
+        : (isMyTurn
+            ? "Your turn (" + currentPlayer + ")"
+            : "Opponent's turn (" + currentPlayer + ")");
+    } else if (vsAI) {
+      statusText.textContent = currentPlayer === "X"
+        ? (playerXName + "'s turn (X)")
+        : (playerOName + " is thinking (O)...");
+    } else {
+      const nameNow = currentPlayer === "X" ? playerXName : playerOName;
+      statusText.textContent = nameNow + "'s turn (" + currentPlayer + ")";
+    }
+  }
+
+  // ⭐ FIXED: CLICK HANDLER (AI locking + mySymbol for online)
+  function handleCellClick(e) {
+    const cell = e.target;
+    const index = parseInt(cell.getAttribute("data-index"), 10);
+
+    // Common guards: no move if game over, cell filled, or AI is thinking
+    if (!isGameActive || board[index] !== "" || aiThinking) return;
+
+    if (onlineMode) {
+      // Online: no move for spectators or when it's not your turn/symbol
+      if (isSpectator) return;
+      if (!isMyTurn) return;
+      if (currentPlayer !== mySymbol) return;
+
+      makeMoveLocal(index);
+      const result = getResult();
+      applyResult(result, false); // local move
+      syncRoomState();
+    } else {
+      // Local (vs AI or vs Player)
+      // In vs AI, player sirf X hota hai, O = AI
+      if (vsAI && currentPlayer === "O") return;
+
+      makeMoveLocal(index);
+      const result = getResult();
+      applyResult(result);
+
+      // ⭐ AI move safely: lock board while AI soch raha hai
+      if (vsAI && isGameActive && currentPlayer === "O") {
+        aiThinking = true;
+        statusText.textContent = playerOName + " is thinking (O)...";
+        setTimeout(() => {
+          aiMove();
+          aiThinking = false;
+        }, 250);
+      }
+    }
+  }
+
+  function resetBoard(keepScores = true) {
+    board = new Array(boardSize * boardSize).fill("");
+    currentPlayer = "X";
+    isGameActive = true;
+    aiThinking = false; // ⭐ reset AI lock
+
+    cells.forEach(cell => {
+      cell.textContent = "";
+      cell.classList.remove("X", "O", "win");
+    });
+
+    if (luckyMode && !onlineMode && !vsAI && boardSize === 3) {
+      const allIdx = [0,1,2,3,4,5,6,7,8];
+
+      const xIndex = allIdx.splice(Math.floor(Math.random() * allIdx.length), 1)[0];
+      board[xIndex] = "X";
+      let c = boardEl.querySelector('.cell[data-index="' + xIndex + '"]');
+      if (c) { c.textContent = "X"; c.classList.add("X"); }
+
+      const oIndex = allIdx[Math.floor(Math.random() * allIdx.length)];
+      board[oIndex] = "O";
+      c = boardEl.querySelector('.cell[data-index="' + oIndex + '"]');
+      if (c) { c.textContent = "O"; c.classList.add("O"); }
+    }
+
+    if (!keepScores) {
+      scoreX = 0;
+      scoreO = 0;
+      scoreDraws = 0;
+      scoreXEl.textContent = "0";
+      scoreOEl.textContent = "0";
+      scoreDrawsEl.textContent = "0";
+      historyList.innerHTML = "";
+      matchCount = 0;
+      xpTotal = 0;
+    }
+    updateXPUI();
+
+    winOverlay.classList.remove("show");
+    gameContainer.classList.remove("shake");
+
+    updateAvatarUI();
+
+    if (onlineMode) {
+      if (!isSpectator) {
+        // Host = X, joiner = O
+        isMyTurn = (mySymbol === "X");
+      }
+      statusText.textContent = isSpectator
+        ? "Spectating… Current: X"
+        : (isMyTurn ? "Your turn (X)" : "Opponent's turn (X)");
+      syncRoomState(true);
+    } else {
+      statusText.textContent = vsAI
+        ? (playerXName + "'s turn (X)")
+        : playerXName + "'s turn (X)";
+    }
+  }
+
+  function aiMove() {
+    if (!vsAI || !isGameActive || currentPlayer !== "O" || onlineMode) return;
+
+    const available = [];
+    board.forEach((v, i) => { if (!v) available.push(i); });
+    if (!available.length) return;
+
+    if (aiDifficulty === "easy") {
+      const idx = available[Math.floor(Math.random() * available.length)];
+      makeMoveLocal(idx);
+      const resultEasy = getResult();
+      applyResult(resultEasy);
+      return;
+    }
+
+    // HARD MODE
+
+    // 1) Try winning move
+    for (const idx of available) {
+      board[idx] = "O";
+      if (getResult().status === "win") {
+        board[idx] = "";
+        makeMoveLocal(idx);
+        const result = getResult();
+        applyResult(result);
+        return;
+      }
+      board[idx] = "";
+    }
+
+    // 2) Block opponent
+    for (const idx of available) {
+      board[idx] = "X";
+      if (getResult().status === "win") {
+        board[idx] = "";
+        makeMoveLocal(idx);
+        const result = getResult();
+        applyResult(result);
+        return;
+      }
+      board[idx] = "";
+    }
+
+    // 3) Prefer center-ish cell
+    let centerIndex = null;
+    if (boardSize === 3) {
+      centerIndex = 4;
+    } else if (boardSize === 4) {
+      centerIndex = 5;
+    } else if (boardSize === 5) {
+      centerIndex = 12;
+    }
+    if (centerIndex !== null && board[centerIndex] === "") {
+      makeMoveLocal(centerIndex);
+      const result = getResult();
+      applyResult(result);
+      return;
+    }
+
+    // 4) Corners
+    let cornerIdx = [];
+    if (boardSize === 3) cornerIdx = [0,2,6,8];
+    else if (boardSize === 4) cornerIdx = [0,3,12,15];
+    else if (boardSize === 5) cornerIdx = [0,4,20,24];
+
+    const freeCorners = cornerIdx.filter(i => board[i] === "");
+    if (freeCorners.length) {
+      const idx = freeCorners[Math.floor(Math.random()*freeCorners.length)];
+      makeMoveLocal(idx);
+      const result = getResult();
+      applyResult(result);
+      return;
+    }
+
+    // 5) Random side
+    const idx = available[Math.floor(Math.random() * available.length)];
+    makeMoveLocal(idx);
+    const result = getResult();
+    applyResult(result);
+  }
+
+  // LOCAL GAME STARTERS
+
+  function startLocalGame(vsAi, useLucky = false) {
+    vsAI = vsAi;
+    luckyMode = useLucky && !vsAi;
+    competitiveMode = false;
+    ultraMode = false;
+    boardSize = 3;
+
+    onlineMode = false;
+    roomCode = null;
+    isSpectator = false;
+    mySymbol = "X"; // local: basically irrelevant but keep X
+    if (unsubscribeRoomFn) { unsubscribeRoomFn(); unsubscribeRoomFn = null; }
+
+    let p1 = player1Input.value.trim();
+    let p2 = player2Input.value.trim();
+
+    if (!p1) p1 = "DSR";
+    if (!p2) p2 = vsAi ? "AI" : "Oggy";
+
+    playerXName = p1;
+    playerOName = p2;
+
+    myDisplayName = playerXName;
+
+    playerXLabel.textContent = playerXName;
+    playerOLabel.textContent = playerOName;
+    if (profilePlayerNameEl) profilePlayerNameEl.textContent = playerXName;
+
+    modeText.textContent = vsAi
+      ? (playerXName + " vs " + playerOName + " (AI)")
+      : (playerXName + " vs " + playerOName);
+
+    onlineInfoBar.style.display = "none";
+    chatHintText.textContent = "Online mode only";
+
+    homeScreen.style.display = "none";
+    coinScreen.style.display = "none";
+    gameScreen.style.display = "block";
+
+    buildBoard();
+    updateAvatarUI();
+    resetBoard(false);
+  }
+
+  function startCompetitiveGame() {
+    vsAI = false;
+    luckyMode = false;
+    competitiveMode = true;
+    ultraMode = false;
+    boardSize = 4;
+
+    onlineMode = false;
+    roomCode = null;
+    isSpectator = false;
+    mySymbol = "X";
+    if (unsubscribeRoomFn) { unsubscribeRoomFn(); unsubscribeRoomFn = null; }
+
+    let p1 = player1Input.value.trim() || "DSR";
+    let p2 = player2Input.value.trim() || "Pro";
+
+    playerXName = p1;
+    playerOName = p2;
+
+    myDisplayName = playerXName;
+
+    playerXLabel.textContent = playerXName;
+    playerOLabel.textContent = playerOName;
+    if (profilePlayerNameEl) profilePlayerNameEl.textContent = playerXName;
+
+    modeText.textContent = "Competitive Mode 🏆 (4x4)";
+    onlineInfoBar.style.display = "none";
+    chatHintText.textContent = "Online mode only";
+
+    homeScreen.style.display = "none";
+    coinScreen.style.display = "none";
+    gameScreen.style.display = "block";
+
+    buildBoard();
+    updateAvatarUI();
+    resetBoard(false);
+  }
+
+  function startUltraCompetitiveGame() {
+    vsAI = false;
+    luckyMode = false;
+    competitiveMode = false;
+    ultraMode = true;
+    boardSize = 5;
+
+    onlineMode = false;
+    roomCode = null;
+    isSpectator = false;
+    mySymbol = "X";
+    if (unsubscribeRoomFn) { unsubscribeRoomFn(); unsubscribeRoomFn = null; }
+
+    let p1 = player1Input.value.trim() || "DSR";
+    let p2 = player2Input.value.trim() || "UltraPro";
+
+    playerXName = p1;
+    playerOName = p2;
+
+    myDisplayName = playerXName;
+
+    playerXLabel.textContent = playerXName;
+    playerOLabel.textContent = playerOName;
+    if (profilePlayerNameEl) profilePlayerNameEl.textContent = playerXName;
+
+    modeText.textContent = "Ultra Competitive 5x5 💣";
+    onlineInfoBar.style.display = "none";
+    chatHintText.textContent = "Online mode only";
+
+    homeScreen.style.display = "none";
+    coinScreen.style.display = "none";
+    gameScreen.style.display = "block";
+
+    buildBoard();
+    updateAvatarUI();
+    resetBoard(false);
+  }
+
+  startVsAI.addEventListener("click", () => startLocalGame(true, false));
+  startVsPlayer.addEventListener("click", () => startLocalGame(false, false));
+  startLuckyMode.addEventListener("click", () => {
+    startLocalGame(false, true);
+    modeText.textContent = "Lucky Start Mode 🎲 (3x3)";
+  });
+  startCompetitiveMode.addEventListener("click", startCompetitiveGame);
+
+  // 3-dot menu (HOME)
+  if (moreBtn && moreMenu) {
+    moreBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      moreMenu.style.display =
+        (moreMenu.style.display === "none" || moreMenu.style.display === "") ? "block" : "none";
+    });
+  }
+
+  if (menuSettingsBtn) {
+    menuSettingsBtn.addEventListener("click", () => {
+      moreMenu.style.display = "none";
+      if (gameScreen.style.display !== "block") {
+        startLocalGame(true, false);
+      }
+      settingsMenu.style.display = "block";
+    });
+  }
+
+  if (menuUltraBtn) {
+    menuUltraBtn.addEventListener("click", () => {
+      moreMenu.style.display = "none";
+      startUltraCompetitiveGame();
+    });
+  }
+
+  // ⭐ ONLINE: HOST / JOIN
+  startOnline.addEventListener("click", async () => {
+    if (!db) { alert("Firebase init failed."); return; }
+
+    vsAI = false;
+    luckyMode = false;
+    competitiveMode = false;
+    ultraMode = false;
+    boardSize = 3;
+
+    onlineMode = true;
+    isSpectator = false;
+    aiToggle.checked = false;
+
+    let p1 = player1Input.value.trim() || "DSR";
+    let p2 = player2Input.value.trim() || "Friend";
+
+    playerXName = p1;
+    playerOName = p2;
+    if (profilePlayerNameEl) profilePlayerNameEl.textContent = playerXName;
+
+    const choice = prompt(
+      "Online Mode:\n" +
+      "1) Naya room banane ke liye 'new' likho\n" +
+      "2) Existing room join karne ke liye code likho (e.g. AB3KQ)"
+    );
+    if (!choice) { onlineMode = false; return; }
+
+    try {
+      if (choice.toLowerCase() === "new") {
+        roomCode = Math.random().toString(36).substring(2,7).toUpperCase();
+        isMyTurn = true;
+        mySymbol = "X"; // host always X
+        myDisplayName = playerXName + " (X)";
+        await createOrInitRoom(roomCode, {
+          board: new Array(9).fill(""),
+          currentPlayer: "X",
+          isGameActive: true,
+          playerXName,
+          playerOName,
+          chat: []
+        });
+        alert("Room created: " + roomCode + "\nDusre device pe ye code use karo.");
+      } else {
+        roomCode = choice.toUpperCase();
+        isMyTurn = false;
+        mySymbol = "O"; // joiner always O
+        const doc = await db.collection("rooms").doc(roomCode).get();
+        if (!doc.exists) {
+          alert("Room nahi mila. Pehle 'new' se room banao.");
+          onlineMode = false;
+          roomCode = null;
+          return;
+        }
+        const data = doc.data();
+        playerXName = data.playerXName || playerXName;
+        playerOName = data.playerOName || playerOName;
+        myDisplayName = playerOName + " (O)";
+        if (profilePlayerNameEl) profilePlayerNameEl.textContent = playerXName;
+      }
+
+      playerXLabel.textContent = playerXName;
+      playerOLabel.textContent = playerOName;
+
+      modeText.textContent = "Online: " + playerXName + " vs " + playerOName;
+
+      onlineInfoBar.style.display = "flex";
+      roomCodeText.textContent = "Room: " + roomCode;
+      connectionStatusText.textContent = "Status: Realtime";
+      chatHintText.textContent = "You are chatting as " + myDisplayName;
+
+      homeScreen.style.display = "none";
+      coinScreen.style.display = "none";
+      gameScreen.style.display = "block";
+
+      boardSize = 3;
+      buildBoard();
+      updateAvatarUI();
+      resetBoard(false);
+      subscribeRoom(roomCode);
+
+    } catch (err) {
+      console.error("Online start error:", err);
+      alert("Online start error: " + err.message);
+      onlineMode = false;
+      roomCode = null;
+    }
+  });
+
+  spectateBtn.addEventListener("click", async () => {
+    if (!db) { alert("Firebase init failed."); return; }
+
+    vsAI = false;
+    luckyMode = false;
+    competitiveMode = false;
+    ultraMode = false;
+    boardSize = 3;
+
+    onlineMode = true;
+    isSpectator = true;
+    mySymbol = null;
+    aiToggle.checked = false;
+
+    const code = prompt("Enter room code to spectate (e.g. AB3KQ)");
+    if (!code) { onlineMode = false; isSpectator = false; return; }
+    roomCode = code.toUpperCase();
+
+    let specName = prompt("Spectator name (optional)") || "Spectator";
+    myDisplayName = specName + " 👀";
+
+    try {
+      const doc = await db.collection("rooms").doc(roomCode).get();
+      if (!doc.exists) {
+        alert("Room nahi mila.");
+        onlineMode = false;
+        isSpectator = false;
+        roomCode = null;
+        return;
+      }
+      const data = doc.data();
+      playerXName = data.playerXName || "Player X";
+      playerOName = data.playerOName || "Player O";
+
+      playerXLabel.textContent = playerXName;
+      playerOLabel.textContent = playerOName;
+      if (profilePlayerNameEl) profilePlayerNameEl.textContent = playerXName;
+
+      boardSize = 3;
+      buildBoard();
+
+      board = data.board || board;
+      currentPlayer = data.currentPlayer || "X";
+      isGameActive = data.isGameActive !== undefined ? data.isGameActive : true;
+      chatData = data.chat || [];
+      renderChat(chatData);
+
+      board.forEach((val, idx) => {
+        const cell = boardEl.querySelector('.cell[data-index="' + idx + '"]');
+        if (!cell) return;
+        cell.textContent = val || "";
+        cell.classList.remove("X","O","win");
+        if (val) cell.classList.add(val);
+      });
+
+      const res = getResult();
+      if (res.status === "win") {
+        highlightWin(res.winCombo);
+        statusText.textContent = "Spectating… " +
+          (res.winner === "X" ? playerXName : playerOName) +
+          " already won.";
+      } else if (res.status === "draw") {
+        statusText.textContent = "Spectating… Match is a draw.";
+      } else {
+        statusText.textContent = "Spectating… Current: " + currentPlayer;
+      }
+
+      modeText.textContent = "Spectating: " + playerXName + " vs " + playerOName;
+
+      onlineInfoBar.style.display = "flex";
+      roomCodeText.textContent = "Room: " + roomCode + " (Spectator)";
+      connectionStatusText.textContent = "Status: Read-only";
+      chatHintText.textContent = "You are chatting as " + myDisplayName;
+
+      homeScreen.style.display = "none";
+      coinScreen.style.display = "none";
+      gameScreen.style.display = "block";
+
+      updateAvatarUI();
+      subscribeRoom(roomCode);
+
+    } catch (err) {
+      console.error("Spectate error:", err);
+      alert("Spectate error: " + err.message);
+      onlineMode = false;
+      isSpectator = false;
+      roomCode = null;
+    }
+  });
+
+  async function createOrInitRoom(code, state) {
+    return db.collection("rooms").doc(code).set({
+      board: state.board,
+      currentPlayer: state.currentPlayer,
+      isGameActive: state.isGameActive,
+      playerXName: state.playerXName,
+      playerOName: state.playerOName,
+      chat: state.chat || [],
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+  }
+
+  function syncRoomState(resetFlag = false) {
+    if (!onlineMode || !roomCode || isSpectator) return;
+    db.collection("rooms").doc(roomCode).update({
+      board: board,
+      currentPlayer: currentPlayer,
+      isGameActive: isGameActive,
+      playerXName: playerXName,
+      playerOName: playerOName,
+      resetFlag: resetFlag ? true : firebase.firestore.FieldValue.delete(),
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(err => {
+      console.error("Sync error:", err);
+    });
+  }
+
+  function subscribeRoom(code) {
+    if (unsubscribeRoomFn) unsubscribeRoomFn();
+
+    unsubscribeRoomFn = db.collection("rooms").doc(code)
+      .onSnapshot(doc => {
+        if (!doc.exists) return;
+        const data = doc.data();
+
+        board = data.board || board;
+        currentPlayer = data.currentPlayer || "X";
+        isGameActive = data.isGameActive !== undefined ? data.isGameActive : true;
+        chatData = data.chat || [];
+        renderChat(chatData);
+
+        board.forEach((val, idx) => {
+          const cell = boardEl.querySelector('.cell[data-index="' + idx + '"]');
+          if (!cell) return;
+          cell.textContent = val || "";
+          cell.classList.remove("X","O","win");
+          if (val) cell.classList.add(val);
+        });
+
+        updateAvatarUI();
+
+        if (data.resetFlag) {
+          db.collection("rooms").doc(code).update({
+            resetFlag: firebase.firestore.FieldValue.delete()
+          });
+        }
+
+        const result = getResult();
+        applyResult(result, true);
+      }, err => {
+        console.error("Snapshot error:", err);
+      });
+  }
+
+  settingsBtn.addEventListener("click", () => {
+    settingsMenu.style.display =
+      (settingsMenu.style.display === "none" || settingsMenu.style.display === "")
+        ? "block"
+        : "none";
+  });
+
+  soundToggle.addEventListener("change", () => {
+    soundEnabled = soundToggle.checked;
+  });
+
+  aiToggle.addEventListener("change", () => {
+    if (onlineMode || competitiveMode || ultraMode || boardSize !== 3) {
+      aiToggle.checked = false;
+      alert("AI sirf classic 3x3 local mode me chalega.");
+      return;
+    }
+    vsAI = aiToggle.checked;
+    luckyMode = false;
+    modeText.textContent = vsAI
+      ? (playerXName + " vs " + playerOName + " (AI)")
+      : (playerXName + " vs " + playerOName);
+    resetBoard(false);
+  });
+
+  if (aiDifficultySelect) {
+    aiDifficultySelect.addEventListener("change", () => {
+      aiDifficulty = aiDifficultySelect.value || "hard";
+    });
+  }
+
+  darkToggle.addEventListener("change", () => {
+    if (darkToggle.checked) document.body.classList.add("dark");
+    else document.body.classList.remove("dark");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (
+      !settingsMenu.contains(e.target) &&
+      e.target !== settingsBtn &&
+      settingsMenu.style.display === "block"
+    ) {
+      settingsMenu.style.display = "none";
+    }
+
+    if (
+      moreMenu &&
+      !moreMenu.contains(e.target) &&
+      e.target !== moreBtn &&
+      moreMenu.style.display === "block"
+    ) {
+      moreMenu.style.display = "none";
+    }
+  });
+
+  restartBtn.addEventListener("click", () => resetBoard(true));
+  newGameBtn.addEventListener("click", () => resetBoard(false));
+
+  homeBtn.addEventListener("click", () => {
+    resetBoard(false);
+    gameScreen.style.display = "none";
+    coinScreen.style.display = "none";
+    homeScreen.style.display = "block";
+    onlineMode = false;
+    roomCode = null;
+    isSpectator = false;
+    competitiveMode = false;
+    ultraMode = false;
+    luckyMode = false;
+    boardSize = 3;
+    onlineInfoBar.style.display = "none";
+    chatHintText.textContent = "Online mode only";
+    if (unsubscribeRoomFn) { unsubscribeRoomFn(); unsubscribeRoomFn = null; }
+    if (moreMenu) moreMenu.style.display = "none";
+  });
+
+  // 💰 Withdraw method handling
+  function setMethod(method) {
+    currentMethod = method;
+    if (!methodUpiBtn) return;
+
+    [methodUpiBtn, methodPaytmBtn, methodBankBtn].forEach(btn => {
+      if (!btn) return;
+      btn.classList.toggle("active", btn.getAttribute("data-method") === method);
+    });
+
+    if (upiRow) upiRow.style.display = (method === "upi") ? "block" : "none";
+    if (paytmRow) paytmRow.style.display = (method === "paytm") ? "block" : "none";
+    if (bankRow) bankRow.style.display = (method === "bank") ? "block" : "none";
+  }
+
+  if (methodUpiBtn) {
+    methodUpiBtn.addEventListener("click", () => setMethod("upi"));
+  }
+  if (methodPaytmBtn) {
+    methodPaytmBtn.addEventListener("click", () => setMethod("paytm"));
+  }
+  if (methodBankBtn) {
+    methodBankBtn.addEventListener("click", () => setMethod("bank"));
+  }
+  setMethod("upi");
+
+  // 🔐 DSR Gamer Profile login / signup handling
+  if (profileBtn && profileOverlay) {
+    profileBtn.addEventListener("click", () => {
+      profileOverlay.classList.add("show");
+      if (profileNameInput) {
+        profileNameInput.value = currentUserName || player1Input.value.trim() || "";
+        profileNameInput.focus();
+      }
+    });
+  }
+
+  if (fbConnectBtn) {
+    fbConnectBtn.addEventListener("click", () => {
+      if (typeof FB === "undefined") {
+        alert("Facebook SDK load nahi hua. Internet connection check karo ya thodi der baad try karo.");
+        return;
+      }
+      if (!fbConnected) {
+        FB.login(function(response) {
+          if (response.authResponse) {
+            FB.api('/me', { fields: 'name' }, function(user) {
+              if (user && user.name) {
+                setCurrentUserName(user.name);
+              }
+              saveFbConnected(true);
+              alert("Facebook successfully linked to your DSR Gamer Profile. ✅");
+              if (profileOverlay) {
+                profileOverlay.classList.remove("show");
+              }
+            });
+          } else {
+            alert("Facebook login cancel ho gaya ya fail ho gaya.");
+          }
+        }, { scope: 'public_profile' });
+      } else {
+        const ok = confirm("Facebook link hataana hai? (Ye sirf is device ki local setting hatayega.)");
+        if (!ok) return;
+        saveFbConnected(false);
+        alert("Facebook link removed from this device.");
+      }
+    });
+  }
+
+  if (profileCancelBtn && profileOverlay) {
+    profileCancelBtn.addEventListener("click", () => {
+      profileOverlay.classList.remove("show");
+    });
+  }
+
+  if (profileSaveBtn && profileOverlay) {
+    profileSaveBtn.addEventListener("click", () => {
+      if (!profileNameInput) return;
+      const raw = profileNameInput.value.trim();
+      if (!raw) {
+        alert("Koi player name likho (e.g. DSR_OGGY).");
+        return;
+      }
+      const safeName = raw.slice(0, 16);
+      setCurrentUserName(safeName);
+      profileOverlay.classList.remove("show");
+    });
+  }
+
+  if (profileOverlay) {
+    profileOverlay.addEventListener("click", (e) => {
+      if (e.target === profileOverlay) {
+        profileOverlay.classList.remove("show");
+      }
+    });
+  }
+
+  if (profileNameInput) {
+    profileNameInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && profileSaveBtn) {
+        profileSaveBtn.click();
+      }
+    });
+  }
+
+  // 💰 Coin screen handling
+  function openCoinScreen(from) {
+    lastScreen = from;
+    updateCoinUI();
+    homeScreen.style.display = "none";
+    gameScreen.style.display = "none";
+    coinScreen.style.display = "block";
+  }
+
+  if (coinBarHome) {
+    coinBarHome.addEventListener("click", () => openCoinScreen("home"));
+  }
+  if (coinBarGame) {
+    coinBarGame.addEventListener("click", () => openCoinScreen("game"));
+  }
+
+  if (coinBackBtn) {
+    coinBackBtn.addEventListener("click", () => {
+      coinScreen.style.display = "none";
+      if (lastScreen === "game") {
+        gameScreen.style.display = "block";
+      } else {
+        homeScreen.style.display = "block";
+      }
+    });
+  }
+
+  // 🧾 Custom Redeem Popup Logic
+  if (withdrawBtn) {
+    withdrawBtn.addEventListener("click", () => {
+      if (!redeemPopup) return;
+      redeemPopup.classList.add("show");
+    });
+  }
+
+  if (redeemPopupClose) {
+    redeemPopupClose.addEventListener("click", () => {
+      redeemPopup.classList.remove("show");
+    });
+  }
+
+  if (redeemPopup) {
+    redeemPopup.addEventListener("click", (e) => {
+      if (e.target === redeemPopup) {
+        redeemPopup.classList.remove("show");
+      }
+    });
+  }
+
+  // 🎮 Game Store details data
+  const GAME_DETAIL_DATA = {
+    toe: {
+      title: "DSR Toe Online",
+      sub: "Classic, Competitive & Ultra Tic Tac Toe",
+      pills: ["Online & Local", "Coins + XP", "Live Now"],
+      desc: "Ye wohi game hai jo aap abhi khel rahe ho. Classic 3x3, Competitive 4x4, aur Ultra 5x5 sab ek hi jagah se. Har win pe coins + XP milega jo aapki profile bar me dikhega."
+    },
+    aim: {
+      title: "DSR Aim Trainer",
+      sub: "Reflex & Tap Speed Challenge",
+      pills: ["Single Player", "Tap speed", "Coming Soon"],
+      desc: "Circular targets random jagah pe appear honge. Time ke andar maximum hit karo aur apni reflex power test karo. Future update me XP streak + global leaderboard add ho sakta hai."
+    },
+    memory: {
+      title: "DSR Memory Flip",
+      sub: "Card flip + memory puzzle",
+      pills: ["Brain training", "Relax + Focus", "Coming Soon"],
+      desc: "Cards face-down honge, aapko pairs dhundne honge. Kam moves me jitoge to XP multiplier milega. Perfect game chill + slow grind ke liye."
+    },
+    drift: {
+      title: "DSR Drift Rush",
+      sub: "Top-down arcade racing",
+      pills: ["Online prototype", "Drift corners", "Under development"],
+      desc: "Small top-down tracks jahan par aap tight corners me drift karoge. Coins se cars upgrade, aur ranked lobbies ka plan hai future versions me."
+    }
+  };
+
+  function setGameDetail(id) {
+    const data = GAME_DETAIL_DATA[id] || GAME_DETAIL_DATA["toe"];
+    if (!data) return;
+    if (gameDetailTitle) gameDetailTitle.textContent = data.title;
+    if (gameDetailSub) gameDetailSub.textContent = data.sub;
+    if (gameDetailDesc) gameDetailDesc.textContent = data.desc;
+    if (gameDetailPills) {
+      gameDetailPills.innerHTML = "";
+      data.pills.forEach(p => {
+        const span = document.createElement("span");
+        span.className = "games-detail-pill";
+        span.textContent = p;
+        gameDetailPills.appendChild(span);
+      });
+    }
+  }
+
+  function openMoreGames() {
+    if (!gamesOverlay) return;
+    gamesOverlay.classList.add("show");
+    setGameDetail("toe");
+  }
+
+  // Close Game Store
+  if (gamesCloseBtn && gamesOverlay) {
+    gamesCloseBtn.addEventListener("click", () => {
+      gamesOverlay.classList.remove("show");
+    });
+
+    gamesOverlay.addEventListener("click", (e) => {
+      if (e.target === gamesOverlay) {
+        gamesOverlay.classList.remove("show");
+      }
+    });
+  }
+
+  // "Play Now" on DSR Toe Online card
+  if (openThisGameBtn && gamesOverlay) {
+    openThisGameBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      gamesOverlay.classList.remove("show");
+      homeScreen.style.display = "none";
+      coinScreen.style.display = "none";
+      gameScreen.style.display = "block";
+    });
+  }
+
+  // Game item click -> change details panel
+  if (gameItems && gameItems.length) {
+    gameItems.forEach(item => {
+      item.addEventListener("click", (e) => {
+        const card = e.currentTarget;
+        const id = card.getAttribute("data-game") || "toe";
+        setGameDetail(id);
+      });
+    });
+  }
+
+  // ⭐ More Games click handler
+  if (moreGamesBtnHome) {
+    moreGamesBtnHome.addEventListener("click", openMoreGames);
+  }
+  if (moreGamesBtnGame) {
+    moreGamesBtnGame.addEventListener("click", openMoreGames);
+  }
+  if (moreGamesBtnCoin) {
+    moreGamesBtnCoin.addEventListener("click", openMoreGames);
+  }
+
+  // Build initial hidden 3x3 to init structures
+  buildBoard();
+</script>
+
+
+  <script>
+  // === DSR Neon Login Logic (no change to existing game JS) ===
+  (function() {
+    const loginOverlay   = document.getElementById("loginOverlay");
+    const tabLogin       = document.getElementById("tabLogin");
+    const tabSignup      = document.getElementById("tabSignup");
+    const loginFormBox   = document.getElementById("loginFormBox");
+    const signupFormBox  = document.getElementById("signupFormBox");
+    const loginEmailEl   = document.getElementById("loginEmail");
+    const loginPassEl    = document.getElementById("loginPassword");
+    const signupNameEl   = document.getElementById("signupName");
+    const signupEmailEl  = document.getElementById("signupEmail");
+    const signupPassEl   = document.getElementById("signupPassword");
+    const signupCPassEl  = document.getElementById("signupConfirmPassword");
+    const loginBtnEl     = document.getElementById("loginBtn");
+    const signupBtnEl    = document.getElementById("signupBtn");
+    const loginMsgEl     = document.getElementById("loginMsg");
+    const signupMsgEl    = document.getElementById("signupMsg");
+    const showSignupEl   = document.getElementById("showSignup");
+    const showLoginEl    = document.getElementById("showLogin");
+
+    const homeScreen     = document.getElementById("homeScreen");
+    const gameScreen     = document.getElementById("gameScreen");
+    const coinScreen     = document.getElementById("coinScreen");
+    const profileGreetingEl   = document.getElementById("profileGreeting");
+    const profileTagEl        = document.getElementById("profileTag");
+    const welcomeTextEl       = document.getElementById("welcomeText");
+    const profilePlayerNameEl = document.getElementById("profilePlayerName");
+
+    const CURRENT_USER_KEY = "dsrLoginUserV1";
+    const USERS_KEY        = "dsrLoginUsersV1";
+
+    function getStoredUsers() {
+      try {
+        const raw = window.localStorage.getItem(USERS_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveStoredUsers(users) {
+      try {
+        window.localStorage.setItem(USERS_KEY, JSON.stringify(users));
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    function setCurrentUser(user) {
+      try {
+        window.localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
+      } catch (e) {
+        console.error(e);
+      }
+      applyUserToUI(user);
+    }
+
+    function getCurrentUser() {
+      try {
+        const raw = window.localStorage.getItem(CURRENT_USER_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function clearMessages() {
+      if (loginMsgEl) {
+        loginMsgEl.textContent = "";
+        loginMsgEl.className = "auth-message";
+      }
+      if (signupMsgEl) {
+        signupMsgEl.textContent = "";
+        signupMsgEl.className = "auth-message";
+      }
+    }
+
+    function showLoginView() {
+      clearMessages();
+      if (tabLogin && tabSignup) {
+        tabLogin.classList.add("active");
+        tabSignup.classList.remove("active");
+      }
+      if (loginFormBox && signupFormBox) {
+        loginFormBox.classList.remove("hidden");
+        signupFormBox.classList.add("hidden");
+      }
+    }
+
+    function showSignupView() {
+      clearMessages();
+      if (tabLogin && tabSignup) {
+        tabLogin.classList.remove("active");
+        tabSignup.classList.add("active");
+      }
+      if (loginFormBox && signupFormBox) {
+        loginFormBox.classList.add("hidden");
+        signupFormBox.classList.remove("hidden");
+      }
+    }
+
+    function applyUserToUI(user) {
+      if (!user) return;
+      if (profileGreetingEl) {
+        profileGreetingEl.textContent = user.name + " Gamer Profile";
+      }
+      if (profileTagEl) {
+        profileTagEl.textContent = "Logged in as " + user.email;
+      }
+      if (welcomeTextEl) {
+        welcomeTextEl.textContent = "Welcome, " + user.name + " 👋";
+      }
+      if (profilePlayerNameEl) {
+        profilePlayerNameEl.textContent = user.name;
+      }
+      // Also use name in chat identity if available
+      try {
+        if (window.myDisplayName !== undefined) {
+          window.myDisplayName = user.name || window.myDisplayName;
+        }
+      } catch (e) {}
+    }
+
+    // Basic tab + text events
+    if (tabLogin)  tabLogin.addEventListener("click", showLoginView);
+    if (tabSignup) tabSignup.addEventListener("click", showSignupView);
+    if (showSignupEl) showSignupEl.addEventListener("click", showSignupView);
+    if (showLoginEl)  showLoginEl.addEventListener("click", showLoginView);
+
+    // Login handler
+    if (loginBtnEl) {
+      loginBtnEl.addEventListener("click", () => {
+        clearMessages();
+        const email = loginEmailEl ? loginEmailEl.value.trim() : "";
+        const pass  = loginPassEl ? loginPassEl.value : "";
+        if (!email || !pass) {
+          if (loginMsgEl) {
+            loginMsgEl.textContent = "Please enter email and password.";
+            loginMsgEl.classList.add("error");
+          }
+          return;
+        }
+        const users = getStoredUsers();
+        const user  = users.find(u => u.email === email && u.password === pass);
+        if (!user) {
+          if (loginMsgEl) {
+            loginMsgEl.textContent = "Invalid email or password.";
+            loginMsgEl.classList.add("error");
+          }
+          return;
+        }
+        if (loginMsgEl) {
+          loginMsgEl.textContent = "Login successful! Entering arena...";
+          loginMsgEl.classList.add("success");
+        }
+        setCurrentUser(user);
+        // Show game home
+        if (loginOverlay) loginOverlay.classList.add("hidden");
+        if (homeScreen)   homeScreen.style.display = "block";
+      });
+    }
+
+    // Signup handler
+    if (signupBtnEl) {
+      signupBtnEl.addEventListener("click", () => {
+        clearMessages();
+        const name  = signupNameEl  ? signupNameEl.value.trim() : "";
+        const email = signupEmailEl ? signupEmailEl.value.trim() : "";
+        const pass  = signupPassEl  ? signupPassEl.value : "";
+        const cpass = signupCPassEl ? signupCPassEl.value : "";
+
+        if (!name || !email || !pass || !cpass) {
+          if (signupMsgEl) {
+            signupMsgEl.textContent = "Please fill all fields.";
+            signupMsgEl.classList.add("error");
+          }
+          return;
+        }
+        if (pass.length < 6) {
+          if (signupMsgEl) {
+            signupMsgEl.textContent = "Password must be at least 6 characters.";
+            signupMsgEl.classList.add("error");
+          }
+          return;
+        }
+        if (pass !== cpass) {
+          if (signupMsgEl) {
+            signupMsgEl.textContent = "Passwords do not match.";
+            signupMsgEl.classList.add("error");
+          }
+          return;
+        }
+
+        const users = getStoredUsers();
+        const existing = users.find(u => u.email === email);
+        if (existing) {
+          if (signupMsgEl) {
+            signupMsgEl.textContent = "Email already registered. Please login.";
+            signupMsgEl.classList.add("error");
+          }
+          return;
+        }
+
+        const newUser = { name, email, password: pass };
+        users.push(newUser);
+        saveStoredUsers(users);
+
+        if (signupMsgEl) {
+          signupMsgEl.textContent = "Account created! You can login now.";
+          signupMsgEl.classList.add("success");
+        }
+
+        if (signupNameEl)  signupNameEl.value = "";
+        if (signupEmailEl) signupEmailEl.value = "";
+        if (signupPassEl)  signupPassEl.value = "";
+        if (signupCPassEl) signupCPassEl.value = "";
+
+        setTimeout(() => {
+          if (signupMsgEl) signupMsgEl.textContent = "";
+          showLoginView();
+        }, 900);
+      });
+    }
+
+    // On load: hide main screens until auth checked
+    window.addEventListener("load", () => {
+      const existingUser = getCurrentUser();
+      if (existingUser) {
+        applyUserToUI(existingUser);
+        if (loginOverlay) loginOverlay.classList.add("hidden");
+        if (homeScreen)   homeScreen.style.display = "block";
+      } else {
+        if (homeScreen)   homeScreen.style.display = "none";
+        if (gameScreen)   gameScreen.style.display = "none";
+        if (coinScreen)   coinScreen.style.display = "none";
+        if (loginOverlay) loginOverlay.classList.remove("hidden");
+      }
+    });
+  })();
+  </script>
+
+</body>
+</html>
