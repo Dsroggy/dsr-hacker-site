@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Get Number Details - DSR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #4f46e5 0, #020617 45%, #000 100%);
+      color: #e5e7eb;
+      padding: 16px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 18px;
+      padding: 24px 22px 22px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      backdrop-filter: blur(14px);
+    }
+
+    .title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #f9fafb;
+      margin-bottom: 4px;
+      letter-spacing: 0.03em;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      margin-bottom: 18px;
+    }
+
+    .subtitle span {
+      color: #a5b4fc;
+      font-weight: 600;
+    }
+
+    .field-group {
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      margin-bottom: 6px;
+      color: #e5e7eb;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      padding: 10px 11px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border 0.2s, box-shadow 0.2s, background 0.2s, transform 0.08s;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #6b7280;
+      font-size: 0.85rem;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.6);
+      background: rgba(15, 23, 42, 0.98);
+      transform: translateY(-0.5px);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .hint {
+      font-size: 0.7rem;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+
+    .actions {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .btn-main {
+      flex: 1;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #f9fafb;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 12px 25px rgba(79, 70, 229, 0.6);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+    }
+
+    .btn-main:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 15px 35px rgba(79, 70, 229, 0.75);
+      filter: brightness(1.05);
+    }
+
+    .btn-main:active {
+      transform: translateY(0) scale(0.99);
+      box-shadow: 0 7px 18px rgba(79, 70, 229, 0.5);
+    }
+
+    .btn-main span.icon {
+      font-size: 1.05rem;
+      transform: translateY(0.5px);
+    }
+
+    .status {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      text-align: right;
+    }
+
+    .status.success {
+      color: #4ade80;
+    }
+
+    .status.error {
+      color: #f97373;
+    }
+
+    .footer-note {
+      margin-top: 14px;
+      font-size: 0.7rem;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    .footer-note span {
+      color: #a5b4fc;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 22px 18px 18px;
+        border-radius: 16px;
+      }
+
+      .title {
+        font-size: 1.3rem;
+      }
+    }
+  
+    .timer {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      text-align: center;
+      color: #a5b4fc;
+      letter-spacing: 0.05em;
+    }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1 class="title">Get Number Details</h1>
+    <p class="subtitle">
+      Jiska <span>number</span> Details Nikal Na Hai Yaha Enter Number Pe Likhke Send Kardo 5m mein ke andar reply ajayega – message direct <span>WhatsApp</span> pe aayega.
+    </p>
+
+    <form id="contactForm" novalidate>
+      <div class="field-group">
+        <label for="phone">Enter Number</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="e.x. 98765 43210"
+          required
+        />
+        <div class="hint">Victim Number / Wait within 5 minutes</div>
+      </div>
+
+      <div class="field-group">
+        <label for="message">Send Message</label>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Kya Details Nikal Na Hai ? Yaha likho..."
+          required
+        ></textarea>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn-main">
+          <span class="icon">📲</span>
+          <span>Send on WhatsApp</span>
+        </button>
+      </div>
+
+      <p id="statusText" class="status" aria-live="polite"></p>
+
+      
+      <p id="countdownTimer" class="timer" aria-live="polite">
+        ⏳ Reply Timer: 05:00
+      </p>
+
+      <p class="footer-note">
+        * Yaha se direct Wp  <span>DSR OGGY LTD</span> mein message bhejta hai.
+      </p>
+    </form>
+  </div>
+
+  
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const statusText = document.getElementById('statusText');
+
+    // Owner WhatsApp number
+    const OWNER_WHATSAPP_NUMBER = '918348004717';
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      statusText.textContent = '';
+      statusText.className = 'status';
+
+      const phone = form.phone.value.trim();
+      const message = form.message.value.trim();
+
+      if (!phone || !message) {
+        statusText.textContent = 'Please fill all fields.';
+        statusText.classList.add('error');
+        return;
+      }
+
+      if (phone.length < 7) {
+        statusText.textContent = 'Invalid number.';
+        statusText.classList.add('error');
+        return;
+      }
+
+      const text = 
+        `New Contact Message%0A` +
+        `----------------------%0A` +
+        `From Number: ${encodeURIComponent(phone)}%0A%0A` +
+        `Message:%0A${encodeURIComponent(message)}`;
+
+      const waUrl = `https://wa.me/${OWNER_WHATSAPP_NUMBER}?text=${text}`;
+
+      statusText.textContent = 'Opening WhatsApp...';
+      statusText.classList.add('success');
+
+      setTimeout(() => {
+        window.location.href = waUrl;
+      }, 200);
+      
+      form.reset();
+    });
+  
+    
+    let timerStarted = false;
+    function startTimer() {
+      if (timerStarted) return;
+      timerStarted = true;
+
+      const timerEl = document.getElementById('countdownTimer');
+      if (!timerEl) return;
+
+      let remaining = 5 * 60;
+      timerEl.textContent = '⏳ Reply Timer: 05:00';
+
+      const timerInterval = setInterval(() => {
+        remaining--;
+        if (remaining <= 0) {
+          remaining = 0;
+          clearInterval(timerInterval);
+        }
+        const m = String(Math.floor(remaining / 60)).padStart(2, '0');
+        const s = String(remaining % 60).padStart(2, '0');
+        timerEl.textContent = '⏳ Reply Timer: ' + m + ':' + s;
+      }, 1000);
+    }
+
+    const sendBtn = document.querySelector('.btn-main');
+    if (sendBtn) {
+      sendBtn.addEventListener('click', startTimer);
+    }
+
+
+</script>
+
+<script>
+let timerStarted = false;
+function startTimer() {
+  if (timerStarted) return;
+  timerStarted = true;
+  const timerEl = document.getElementById('countdownTimer');
+  if (!timerEl) return;
+  let remaining = 5 * 60;
+  timerEl.textContent = '⏳ Reply Timer: 05:00';
+  const timerInterval = setInterval(() => {
+    remaining--;
+    if (remaining <= 0) {remaining = 0;clearInterval(timerInterval);}
+    const m = String(Math.floor(remaining / 60)).padStart(2,'0');
+    const s = String(remaining % 60).padStart(2,'0');
+    timerEl.textContent = '⏳ Reply Timer: ' + m + ':' + s;
+  },1000);
+}
+document.querySelector('.btn-main')?.addEventListener('click',startTimer);
+</script>
+
+</body>
+</html>
