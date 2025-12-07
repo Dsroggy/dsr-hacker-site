@@ -6,6 +6,129 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/png" href="dsr-logo.png" />
   <link rel="stylesheet" href="styles.css" />
+
+<style>
+/* PRO level "Secured By Knox" badge */
+
+/* Base pill */
+.pill-success {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.32px;
+  font-size: 0.9rem;
+  color: #e9f4ff;
+  text-shadow:
+    0 0 4px rgba(59, 130, 246, 0.9),
+    0 0 10px rgba(37, 99, 235, 0.7);
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Rotating neon ring + soft outer halo */
+.pill-success::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background:
+    conic-gradient(
+      from 0deg,
+      #22d3ee,
+      #3b82f6,
+      #6366f1,
+      #ec4899,
+      #22d3ee
+    );
+  filter: blur(1.2px);
+  opacity: 0.9;
+  animation: pill-ring-spin 6s linear infinite;
+  z-index: -2;
+}
+
+/* Inner dark pill with subtle gradient */
+.pill-success::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(125, 211, 252, 0.35), transparent 55%),
+    radial-gradient(circle at 70% 120%, rgba(196, 181, 253, 0.4), #020617 70%);
+  box-shadow:
+    0 0 8px rgba(37, 99, 235, 0.7),
+    0 0 18px rgba(79, 70, 229, 0.65);
+  z-index: -1;
+}
+
+/* Light sweep over the text */
+.pill-success span,
+.pill-success {
+  position: relative;
+}
+
+.pill-success::marker { content: ""; }
+
+/* Shimmer layer only on top side */
+.pill-success::selection { background: transparent; }
+
+.pill-success > .shine {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(248, 250, 252, 0.55) 45%,
+    rgba(248, 250, 252, 0.2) 55%,
+    transparent 100%
+  );
+  mix-blend-mode: screen;
+  opacity: 0.0;
+  pointer-events: none;
+  transform: translateX(-120%);
+  animation: pill-shine 3.2s ease-in-out infinite;
+}
+
+/* Keyframes */
+@keyframes pill-ring-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pill-shine {
+  0% {
+    opacity: 0;
+    transform: translateX(-120%);
+  }
+  30% {
+    opacity: 0;
+    transform: translateX(-120%);
+  }
+  50% {
+    opacity: 0.55;
+    transform: translateX(0%);
+  }
+  70% {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+}
+</style>
+
+
+
+
+
+
 </head>
 <body>
   <div class="page">
@@ -42,7 +165,7 @@
         <!-- Hero card -->
         <section class="card hero-card">
           <header class="card-header">
-            <span class="pill pill-success">Secured By Knox</span>
+            <span class="pill pill-success">Secured By Knox<span class="shine"></span></span>
             <span class="pill pill-outline">Clean • Fast • No ads</span>
           </header>
 
